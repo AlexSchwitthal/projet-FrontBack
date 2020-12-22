@@ -1,1 +1,42 @@
-<p>register works!</p>
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col-lg-8">
+            <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body p-0">
+                    <div class="p-5">
+                        <div class="text-center">
+                            <h1 class="h4 text-gray-900 mb-4">Création du compte !</h1>
+                        </div>                        
+                        
+                        <mat-form-field> 
+                            <mat-label>Nom d'utilisateur</mat-label>
+                            <input matInput type="text">
+                        </mat-form-field>
+                        
+                        <br/><br/>
+                        
+                        <mat-form-field>
+                            <mat-label>Mot de passe</mat-label>
+                            <input matInput [type]="hide ? 'password' : 'text'">
+                            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                        </mat-form-field>
+                        
+                        <br/><br/>
+                        
+                        <div class="d-flex justify-content-center">
+                            <button mat-raised-button color="primary">
+                                S'inscrire
+                            </button>
+                        </div>
+                        <hr>
+                        <div class="text-center">
+                            <a class="small" href="/login">Tu as déjà un compte ? Identifies toi !</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

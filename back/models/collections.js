@@ -4,9 +4,10 @@ module.exports = {
 	// mapping des utilisateurs
 	users: function() {
 		const usersSchema = new mongoose.Schema({
-/* 			_id:  Object,
+ 			_id:  Object,
 			login: { type : String , unique : true, required : true },
-			password: { type : String, required : true } */
+            password: { type : String, required : true },
+            following: { type : Array, required : true}
 		});
 		return mongoose.model('users', usersSchema, 'users');
 	},
