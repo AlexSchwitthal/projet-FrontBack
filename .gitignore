@@ -11,6 +11,7 @@
 /front/node_modules
 /back/node_modules
 /back/config.json
+/back/package-lock.json
 
 # profiling files
 chrome-profiler-events*.json
