@@ -7,6 +7,7 @@ module.exports = {
  			_id:  Object,
 			login: { type : String , unique : true, required : true },
             password: { type : String, required : true },
+            nickname: { type : String, required : true },
             following: { type : Array, required : true}
 		});
 		return mongoose.model('users', usersSchema, 'users');

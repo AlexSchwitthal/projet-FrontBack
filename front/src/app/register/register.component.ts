@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
@@ -15,7 +16,7 @@ export class RegisterComponent implements OnInit {
   login:any = "";
   password:any = "";
 
-  constructor(public authService: AuthService, private _snackBar: MatSnackBar) { }
+  constructor(private router: Router, public authService: AuthService, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
@@ -24,21 +25,24 @@ export class RegisterComponent implements OnInit {
     this.authService.register(this.login, this.password).subscribe(
       (userInfo:any) => {
         if(userInfo == "-1") {
-          this._snackBar.open("ce nom d'utilisateur existe déjà !", "", {
-            duration: 3000,
-            panelClass: ['mat-toolbar', 'mat-warn'],
-            verticalPosition: 'top'
-          });
+					this.openSnackBar("ce nom d'utilisateur existe déjà !");
+        }
+        else {
+        	this.router.navigate(['/login', {registered: true}]);
         }
       },
       (error) => {
-        this._snackBar.open("Vous devez remplir tout les champs du formulaire !", "", {
-          duration: 3000,
-            panelClass: ['mat-toolbar', 'mat-warn'],
-            verticalPosition: 'top'
-        });
+				this.openSnackBar("Vous devez remplir tout les champs du formulaire !");
         console.log("error", error);
       }
     )
-  }
+	}
+	
+	openSnackBar(message):any {
+		this._snackBar.open(message, "", {
+			duration: 3000,
+				panelClass: ['mat-toolbar', 'mat-warn'],
+				verticalPosition: 'top'
+		});
+	}
 }
