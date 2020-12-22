@@ -1,11 +1,15 @@
-const express = require('express')
-const app = express()
-const port = 3000
+const express = require('express');
+const app = express();
+const port = 3000;
+
+// DB
+require('./models/db.js').connectToDB();
+const queries = require('./models/queries.js');
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.send('Hello World!');
 })
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+  console.log('app listening to http://localhost:' + port);
 })
