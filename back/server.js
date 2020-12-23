@@ -47,10 +47,30 @@ app.post('/login', async (req, res) => {
   }
 	else {
     res.status(401).json({error: "erreur"});
-	//	res.render('login', {erreur : "nom d'utilisateur ou mot de passe incorrect !"});
 	}
 });
 
+app.get('/isLogged', async (req, res) => {
+  if(!ssn.userId) {
+    return res.status(401).json({msg: "erreur"});
+  }
+  else {
+    const user = await queries.getUserById(ssn.userId);
+    if(user == null) {
+      return res.status(401).json({msg: "erreur"});
+    }
+    else {
+      return res.status(200).json({userId: user._id});
+    }
+  }
+});
+
+app.get('/logout', (req, res) => {
+  ssn.destroy(error => {
+      if(error) return res.status(409).json({msg:"error"});
+      res.status(200).json({msg: "Logout OK"});
+  });
+});
 
 app.listen(port, () => {
   console.log('app listening to http://localhost:' + port);

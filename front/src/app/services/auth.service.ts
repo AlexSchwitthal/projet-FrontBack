@@ -24,15 +24,7 @@ export class AuthService {
     return this.http.post("http://localhost:3000/addUser", {login: login, password: password}, { withCredentials: true });
   }
 
-  isLogged() {
-    this.http.get("http://localhost:3000/isLogged", {withCredentials : true}).subscribe(
-      (connectedUser) => {
-        this.connectedUser = connectedUser;
-        console.log("connected");
-      },
-      (error) => {
-        console.log("not connected");
-      }
-    )
+  isLogged():Observable<any> {
+    return this.http.get("http://localhost:3000/isLogged", {withCredentials : true});
   }
 }

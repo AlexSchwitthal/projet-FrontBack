@@ -10,13 +10,19 @@ export class NotAuthGuardService implements CanActivate {
 
   constructor(private router: Router, private authService: AuthService) { }
 
-  canActivate(): Observable<boolean> | Promise<boolean> | boolean {
-    console.log(this.authService.isAuth);
-    if(!this.authService.isAuth) {
-      return true;
-    } 
-    else {
-      this.router.navigate(['/home']);
-    }
+  canActivate(): Observable<boolean> | Promise<boolean> | boolean {  
+    return new Promise(
+      (resolve, object) => {
+        this.authService.isLogged().subscribe(
+          (userInfo:any) => {
+            this.router.navigate(['/home']);
+            resolve(false);
+          },
+          (error) => {
+            resolve(true);
+          }
+        )
+      }
+    );
   }
 }

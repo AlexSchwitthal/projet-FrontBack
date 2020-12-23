@@ -3,7 +3,7 @@
 		<mat-nav-list>
 
             <mat-list-item>
-                <a mat-raised-button color="primary" href="/home">
+                <a mat-raised-button color="primary" routerLink="/home">
                     <mat-icon mat-list-icon>
                         home
                     </mat-icon>Accueil
@@ -19,7 +19,7 @@
             </mat-list-item>
 
             <mat-list-item>
-                <a mat-raised-button color="primary" href="">
+                <a mat-raised-button color="primary" routerLink="/login" (click)="logout()">
                     <mat-icon mat-list-icon>
                         exit_to_app
                     </mat-icon>Se déconnecter

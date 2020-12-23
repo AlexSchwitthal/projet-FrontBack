@@ -29,16 +29,13 @@ module.exports = {
         else {
             return "-1";
         }
-/*         return this.getSpecificUser(login).then(user => {
-            bcrypt.compare(password, user.password, function(err, result) {
-                if(result == true) {
-                    return user;
-                }
-                else {
-                    return "-1";
-                }
-            });
-        }) */
+    },
+
+    getUserById: async function(userId) {
+        return users.findOne({_id : mongoose.Types.ObjectId(userId)}, (error, user) => {
+            if(error) return error;
+            return user;
+        });
     },
 
     // ajoute un utilisateur dans la base de données
