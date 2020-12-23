@@ -1,7 +1,6 @@
-<mat-sidenav-container class="sidenav" autosize>
+<mat-sidenav-container class="sidenav">
 	<mat-sidenav #sidenav mode="side" opened="true">
 		<mat-nav-list>
-
             <mat-list-item>
                 <a mat-raised-button color="primary" routerLink="/home">
                     <mat-icon mat-list-icon>
@@ -11,7 +10,7 @@
             </mat-list-item>
 
             <mat-list-item>
-                <a mat-raised-button color="primary">
+                <a mat-raised-button color="primary" (click)="profile()">
                     <mat-icon mat-list-icon>
                         person
                     </mat-icon>Mon profil
@@ -34,5 +33,5 @@
                 </a>
             </mat-list-item>
 		</mat-nav-list>
-	</mat-sidenav>
+    </mat-sidenav>
 </mat-sidenav-container>

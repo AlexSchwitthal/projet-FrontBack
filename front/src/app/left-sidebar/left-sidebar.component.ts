@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class LeftSidebarComponent implements OnInit {
 
-  constructor(public authService: AuthService) { }
+  constructor(public authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -20,5 +21,10 @@ export class LeftSidebarComponent implements OnInit {
       (error) => {
       }
     )
+  }
+
+  profile(): void {
+    console.log("mdr");
+    this.router.navigate(['/', this.authService.connectedUser.login]);
   }
 }
