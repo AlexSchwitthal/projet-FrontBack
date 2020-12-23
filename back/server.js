@@ -60,7 +60,7 @@ app.get('/isLogged', async (req, res) => {
       return res.status(401).json({msg: "erreur"});
     }
     else {
-      return res.status(200).json({userId: user._id});
+      return res.status(200).json({user: user});
     }
   }
 });

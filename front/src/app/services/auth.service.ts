@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  connectedUser: any = null;
+  connectedUser: User = null;
   isAuth: boolean = false;
 
   constructor(private http: HttpClient) { }
