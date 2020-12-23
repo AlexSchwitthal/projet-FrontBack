@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
+
 import { AuthGuardService } from './services/auth-guard.service';
 
 import { HttpClientModule } from '@angular/common/http';
@@ -17,7 +19,11 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import { HomeComponent } from './home/home.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
+import { LeftSidebarComponent } from './left-sidebar/left-sidebar.component';
+import { HeaderComponent } from './header/header.component';
+
 
 
 @NgModule({
@@ -25,7 +31,9 @@ import { HomeComponent } from './home/home.component';
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    LeftSidebarComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +47,9 @@ import { HomeComponent } from './home/home.component';
     MatInputModule,
     MatFormFieldModule,
     MatIconModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatSidenavModule,
+    MatListModule
   ],
   providers: [AuthGuardService],
   bootstrap: [AppComponent]

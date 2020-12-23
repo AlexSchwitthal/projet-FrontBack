@@ -4,13 +4,17 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuardService } from './services/auth-guard.service';
-
+import { NotAuthGuardService } from './services/not-auth-guard.service';
 
 const routes: Routes = [
+/*   {path:'', canActivate: [NotAuthGuardService], component:LoginComponent},
+  {path:'login', canActivate: [NotAuthGuardService], component:LoginComponent},
+  {path:'register', canActivate: [NotAuthGuardService], component:RegisterComponent},
+  {path:'home', canActivate: [AuthGuardService], component:HomeComponent} */
   {path:'', component:LoginComponent},
   {path:'login', component:LoginComponent},
   {path:'register', component:RegisterComponent},
-  {path:'home', canActivate: [AuthGuardService], component:HomeComponent}
+  {path:'home', component:HomeComponent}
 ];
 
 @NgModule({
