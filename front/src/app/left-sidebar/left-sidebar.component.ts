@@ -25,6 +25,6 @@ export class LeftSidebarComponent implements OnInit {
 
   profile(): void {
     console.log("mdr");
-    this.router.navigate(['/', this.authService.connectedUser.login]);
+    this.router.navigate(['/profile', this.authService.connectedUser.login]);
   }
 }

@@ -24,6 +24,7 @@ import {MatListModule} from '@angular/material/list';
 import { LeftSidebarComponent } from './left-sidebar/left-sidebar.component';
 import { HeaderComponent } from './header/header.component';
 import { ProfileComponent } from './profile/profile.component';
+import { SettingsComponent } from './settings/settings.component';
 
 
 
@@ -35,7 +36,8 @@ import { ProfileComponent } from './profile/profile.component';
     HomeComponent,
     LeftSidebarComponent,
     HeaderComponent,
-    ProfileComponent
+    ProfileComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,

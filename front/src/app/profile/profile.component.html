@@ -1,3 +1,16 @@
 <app-header></app-header>
 <app-left-sidebar></app-left-sidebar>
-ça marche pas :( 
+<mat-sidenav #rightSidenav mode="side" opened="true" class="centerNav" [fixedTopGap]="100" [fixedBottomGap]="100">
+	
+<div>bloc de merde pas responsive vu que j'suis nul en design :( </div>
+<br/>
+<div>
+    nom d'utilisateur : {{this.authService.connectedUser.login}}
+</div>
+<div>
+    mot de passe : {{this.authService.connectedUser.password}}
+</div>
+<div>
+    suivi par {{this.authService.connectedUser.following.length}} personne(s)
+</div>
+</mat-sidenav>
