@@ -9,6 +9,14 @@ const saltRounds = 10;
 
 module.exports = {
 
+    // récupère la liste des utilisateurs
+	getAllUsers: function() {
+        return users.find((error, users) => {
+            if(error) return console.error(error);
+            return users;
+        });
+    },
+
     // récupère un utilisateur en fonction d'un login donné
     getSpecificUser: function(login) {
         return users.findOne({login : login},(error, user) => {

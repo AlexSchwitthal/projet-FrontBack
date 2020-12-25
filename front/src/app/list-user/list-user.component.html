@@ -1,0 +1,10 @@
+<app-header></app-header>
+<app-left-sidebar></app-left-sidebar>
+<mat-sidenav #rightSidenav mode="side" opened="true" class="centerNav" [fixedTopGap]="100" [fixedBottomGap]="100">
+    <ul>
+        <li *ngFor="let user of users">{{ user.nickname }}</li>
+        <p>vu</p>
+    </ul>
+    
+</mat-sidenav>
+

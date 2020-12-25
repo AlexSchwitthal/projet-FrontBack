@@ -72,6 +72,12 @@ app.get('/logout', (req, res) => {
   });
 });
 
+app.get('/users'), (req, res) => {
+  queries.getAllUsers().then(allUsers => {
+    res.render('users', {users: allUsers});
+  }).catch( () => res.render('users'));
+};
+
 app.listen(port, () => {
   console.log('app listening to http://localhost:' + port);
 })
