@@ -8,7 +8,7 @@ import { User } from '../models/user';
   styleUrls: ['./list-user.component.scss']
 })
 export class ListUserComponent implements OnInit {
-  users: any;
+  users: User[];
 
   constructor(public usersService: UsersService) { }
 
@@ -19,8 +19,10 @@ export class ListUserComponent implements OnInit {
   getUsers(){
     this.usersService.getUsers().subscribe(
       (allUsers:any) => {
-        console.log(allUsers);
-        console.log("gfege");
+        this.users = new Array();
+        for(var user of allUsers) {
+          this.users.push(new User(user._id, user.login, user.password, user.nickname, user.following));
+        }
       },
       (error) => {
         console.log(error);

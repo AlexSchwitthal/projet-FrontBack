@@ -8,7 +8,6 @@ import { User } from '../models/user';
 })
 export class AuthService {
   connectedUser: User = null;
-  isAuth: boolean = false;
 
   constructor(private http: HttpClient) { }
 
