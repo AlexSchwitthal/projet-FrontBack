@@ -72,11 +72,16 @@ app.get('/logout', (req, res) => {
   });
 });
 
-app.get('/users'), (req, res) => {
-  queries.getAllUsers().then(allUsers => {
-    res.render('users', {users: allUsers});
-  }).catch( () => res.render('users'));
-};
+app.get('/users', async (req, res) => {
+  try {
+    const allUsers = await queries.getAllUsers();
+    console.log(allUsers);
+    res.status(200).json({users : JSON.stringify(allUsers)});
+  }
+  catch(e) {
+    res.status(401).json(e);
+  }
+});
 
 app.listen(port, () => {
   console.log('app listening to http://localhost:' + port);

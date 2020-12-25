@@ -11,7 +11,7 @@ module.exports = {
 
     // récupère la liste des utilisateurs
 	getAllUsers: function() {
-        return users.find((error, users) => {
+        return users.find({}, (error, users) => {
             if(error) return console.error(error);
             return users;
         });

@@ -18,12 +18,13 @@ export class ListUserComponent implements OnInit {
 
   getUsers(){
     this.usersService.getUsers().subscribe(
-      (users:Array<User>) => {
-        this.users = users;
+      (result:any) => {
+        console.log(result.users);
         console.log("gfege");
       },
       (error) => {
-        console.log("Error");
+        console.log(error);
+        console.log("fdp");
       }
     )
   }

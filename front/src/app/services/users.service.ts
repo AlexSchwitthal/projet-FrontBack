@@ -13,6 +13,6 @@ export class UsersService {
   constructor(private http: HttpClient) { }
 
   getUsers(): any {
-    return this.http.get("http://localhost:3000/users");
+    return this.http.get("http://localhost:3000/users", { withCredentials : true});
   }
 }
