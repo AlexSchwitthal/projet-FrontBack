@@ -9,6 +9,9 @@ const port = 3000;
 require('./models/db.js').connectToDB();
 const queries = require('./models/queries.js');
 
+/* queries.getAllUsers().then(users => {
+  console.log(users);
+}) */
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json()); 
 app.use(session({secret:"FrontBack", cookie:{maxAge: 24 * 60 * 60 * 1000}}));
@@ -76,7 +79,7 @@ app.get('/users', async (req, res) => {
   try {
     const allUsers = await queries.getAllUsers();
     console.log(allUsers);
-    res.status(200).json({users : JSON.stringify(allUsers)});
+    res.json(allUsers);
   }
   catch(e) {
     res.status(401).json(e);
