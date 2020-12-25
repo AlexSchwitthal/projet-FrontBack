@@ -2,9 +2,41 @@
 <app-left-sidebar></app-left-sidebar>
 
 <mat-sidenav #rightSidenav mode="side" opened="true" class="centerNav" [fixedTopGap]="100" [fixedBottomGap]="100">
+
+    <div>
+        <span class="label">
+        Changer de pseudonyme :   
+        </span>
+        <mat-form-field>
+            <mat-label>Saisir pseudo</mat-label>
+            <input matInput type="text" [(ngModel)]="nickname" maxlength="15"> 
+        </mat-form-field>
+        <button (click)="changeNickname()" mat-raised-button color="primary" class="validation">
+            Changer pseudonyme
+        </button>
+    </div>
+
+    <div>
+        <span class="label">
+        Saisir un nouveau mot de passe :   
+        </span>
+        <mat-form-field>
+            <mat-label>Saisir mot de passe</mat-label>
+            <input flex matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="password" maxlength="15">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+        <button (click)="changePassword()" mat-raised-button color="primary" class="validation">
+            Changer mot de passe
+        </button>
+    </div>
+
     <div>    
         <button (click)="deleteUser()" mat-raised-button color="warn">
             Supprimer mon compte
         </button>
     </div>
+
+  
 </mat-sidenav>

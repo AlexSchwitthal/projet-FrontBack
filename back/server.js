@@ -39,6 +39,16 @@ app.post('/addUser', async (req, res) => {
   }
 });
 
+app.put('/editUser', async (req, res) => {
+  const isEdited = await queries.editUser(req.body.user);
+  if(isEdited != null) {
+    res.status(200).json({msg: "success"});
+  }
+  else {
+    res.status(401).json({error: "erreur"});
+  }
+});
+
 app.post('/deleteUser', async (req, res) => {
   const isDeleted = await queries.deleteUser(req.body.userId);
   if(isDeleted != null) {

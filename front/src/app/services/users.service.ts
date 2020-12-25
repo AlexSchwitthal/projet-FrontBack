@@ -16,6 +16,10 @@ export class UsersService {
     return this.http.get("http://localhost:3000/users", { withCredentials : true});
   }
 
+  editUser(user:User): any {
+    return this.http.put("http://localhost:3000/editUser", {user: user}, { withCredentials: true });
+  }
+
   deleteUser(userId:any): any {
     return this.http.post("http://localhost:3000/deleteUser", {userId: userId}, { withCredentials: true });
   }

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const users = require('./collections.js').users();
 const boards = require('./collections.js').tweets();
 
-// cryptage des mots de passes
+// chiffrement des mots de passe
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
@@ -69,6 +69,18 @@ module.exports = {
         else {
             return "-1";
         }
+    },
+    editUser: async function(newValues) {
+        var newPassword = newValues.password;
+        if(newValues.password.length != 60) {
+            newPassword = await bcrypt.hash(newValues.password, saltRounds) 
+        }
+        return users.findOneAndUpdate({_id: mongoose.Types.ObjectId(newValues._id)}, {
+            $set:{
+                nickname: newValues.nickname,
+                password: newPassword
+            }
+        }).exec();
     },
 
     deleteUser: function(userId) {
