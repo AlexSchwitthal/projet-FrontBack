@@ -1,10 +1,31 @@
-<app-header></app-header>
+<app-header>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
+</app-header>
 <app-left-sidebar></app-left-sidebar>
 <mat-sidenav #rightSidenav mode="side" opened="true" class="centerNav" [fixedTopGap]="100" [fixedBottomGap]="100">
-    <ul>
-        <li *ngFor="let user of users">{{ user.nickname }}</li>
-        <p>vu</p>
-    </ul>
+    
+    <div class="container">
+        <div>
+            <h1>Liste des utilisateurs</h1>
+        </div>
+        <div>           
+            <input class="form-control" type="search" id="search" aria-label="Search" placeholder="Rechercher..." (keyup.enter)="keyupSearch($event.target.value)">
+            
+        </div>
+        <br>
+        <table class="table">
+            <thead>
+                <th scope="col">Nom d'utilisateur</th>                
+            </thead>
+            <tbody id="utilisateurs">                
+                <tr *ngFor="let user of users">{{ user.nickname }}</tr>
+                
+            </tbody>
+        </table>
+    </div>
+   
+   
+    
     
 </mat-sidenav>
 

@@ -30,4 +30,47 @@ export class ListUserComponent implements OnInit {
     )
   }
 
+  keyupSearch(value): void{
+    console.log("aaaa");
+    let tab = document.getElementById("#utilisateurs");
+    for (var i = 0; tab.childNodes.length; i++){
+      console.log(tab.childNodes[i]);
+      /* if ((tab.childNodes[i].nickname().include() == -1) {
+        $(this).css("display", "none");
+      }
+      else {
+        $(this).css("display", "block");
+      } */
+    }
+    /* tab.childNodes.each(function() {
+      if ($(this).text().search(userInput) == -1) {
+        $(this).css("display", "none");
+      }
+      else {
+        $(this).css("display", "block");
+      }
+    }) */
+  }
+
+ /*  $("#searchBar").on({
+		keyup : function() {
+			var userInput = $(this).val();
+
+			$("#notesBoard").children().each(function() {
+				if ($(this).text().search(userInput) == -1) {
+					$(this).css("display", "none");
+				}
+				else {
+					$(this).css("display", "block");
+				}
+			})
+		},
+		click : function() {
+			$(this).val("");
+			$("#notesBoard").children().each(function() {
+				$(this).css("display", "block");
+			})
+		}
+	});
+ */
 }
