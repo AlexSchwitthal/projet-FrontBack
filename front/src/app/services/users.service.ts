@@ -15,4 +15,8 @@ export class UsersService {
   getUsers(): any {
     return this.http.get("http://localhost:3000/users", { withCredentials : true});
   }
+
+  deleteUser(userId:any): any {
+    return this.http.post("http://localhost:3000/deleteUser", {userId: userId}, { withCredentials: true });
+  }
 }

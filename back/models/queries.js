@@ -69,6 +69,10 @@ module.exports = {
         else {
             return "-1";
         }
+    },
+
+    deleteUser: function(userId) {
+        return users.findOneAndDelete({_id: mongoose.Types.ObjectId(userId)}).exec();
     }
 };
   

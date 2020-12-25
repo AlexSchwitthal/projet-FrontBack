@@ -1,2 +1,10 @@
 <app-header></app-header>
 <app-left-sidebar></app-left-sidebar>
+
+<mat-sidenav #rightSidenav mode="side" opened="true" class="centerNav" [fixedTopGap]="100" [fixedBottomGap]="100">
+    <div>    
+        <button (click)="deleteUser()" mat-raised-button color="warn">
+            Supprimer mon compte
+        </button>
+    </div>
+</mat-sidenav>

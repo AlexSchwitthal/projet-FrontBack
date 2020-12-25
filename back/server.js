@@ -28,9 +28,6 @@ app.use((req, res, next) => {
 
 app.use(cors({credentials: true, origin: 'http://localhost:4200'}));
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-})
 
 app.post('/addUser', async (req, res) => {
   if(req.body.login == "" || req.body.password == "") {
@@ -39,6 +36,16 @@ app.post('/addUser', async (req, res) => {
   else {
     const result = await queries.addUser(req.body.login, req.body.password);
     res.json(result);
+  }
+});
+
+app.post('/deleteUser', async (req, res) => {
+  const isDeleted = await queries.deleteUser(req.body.userId);
+  if(isDeleted != null) {
+    res.status(200).json({msg: "success"});
+  }
+  else {
+    res.status(401).json({error: "erreur"});
   }
 });
 
@@ -78,7 +85,6 @@ app.get('/logout', (req, res) => {
 app.get('/users', async (req, res) => {
   try {
     const allUsers = await queries.getAllUsers();
-    console.log(allUsers);
     res.json(allUsers);
   }
   catch(e) {

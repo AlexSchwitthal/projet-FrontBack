@@ -26,6 +26,13 @@ export class LoginComponent implements OnInit {
           verticalPosition: 'top'
       });
     }
+    else if(this.route.snapshot.paramMap.get('deleted') == "true") {
+      this._snackBar.open("votre compte a bien été supprimé !", "", {
+        duration: 3000,
+          panelClass: ['mat-toolbar', 'mat-warn'],
+          verticalPosition: 'top'
+      });
+    }
   }
 
   submit(): any {
