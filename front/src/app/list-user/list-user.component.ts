@@ -31,7 +31,6 @@ export class ListUserComponent implements OnInit {
   }
 
   keyupSearch(value): void{
-    console.log("aaaa");
     let tab = document.getElementById("tabUtilisateurs");
     var children = Array.from(document.getElementsByClassName("userList") as HTMLCollectionOf<HTMLElement>);
     console.log(children.length);
