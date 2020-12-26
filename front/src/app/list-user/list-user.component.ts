@@ -14,6 +14,9 @@ export class ListUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUsers();
+    setInterval(() => {
+        this.getUsers();
+    }, 2000);
   }
 
   getUsers(){

@@ -17,7 +17,7 @@
             <thead>
                 <th scope="col">Nom d'utilisateur</th>                
             </thead>
-            <tbody id="tabUtilisateurs">                
+            <tbody id="tabUtilisateurs">   
                 <tr class="userList" *ngFor="let user of users"><a routerLink="/profile/{{user.login}}">{{ user.nickname }}</a></tr>
             </tbody>
         </table>
