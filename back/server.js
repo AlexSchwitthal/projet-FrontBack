@@ -118,6 +118,48 @@ app.get('/users', async (req, res) => {
   }
 });
 
+//Gestion des publications
+
+app.post('/addTweet', async (req, res) => {
+  if(req.body.content == "" || req.body.creator_id == "") {
+    res.status(500).json({error: "erreur"});
+  }
+  else {
+    const result = await queries.addTweet(req.body.content, req.body.creator_id);
+    res.json(result);
+  }
+});
+
+app.post('/deleteTweet', async (req, res) => {
+  const isDeleted = await queries.deleteTweet(req.body.tweet_id);
+  if(isDeleted != null) {
+    res.status(200).json({msg: "success"});
+  }
+  else {
+    res.status(401).json({error: "erreur"});
+  }
+});
+
+app.get('/tweet/:creatorid', async (req, res) => {
+  try {
+    const result = await queries.getTweetByCreatorId(req.params.creatorid);
+    res.json(result);
+  }
+  catch(e) {
+    res.status(401).json(e);
+  }
+});
+
+app.put('/editTweet', async (req, res) => {
+  const isEdited = await queries.editTweet(req.body.tweet);
+  if(isEdited != null) {
+    res.status(200).json({msg: "success"});
+  }
+  else {
+    res.status(401).json({error: "erreur"});
+  }
+});
+
 app.listen(port, () => {
   console.log('app listening to http://localhost:' + port);
 })

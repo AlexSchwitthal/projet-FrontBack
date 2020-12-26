@@ -16,10 +16,12 @@ module.exports = {
 	// mapping des tableaux
 	tweets: function() {
 		const tweetsSchema = new mongoose.Schema({
-		/* 	_id: Object,
-			name: {type : String, unique : true},
+		 	_id: Object,
+			content:  String,
 			creator_id : Object,
-			creator_name: String,
+			created_at: Date,
+			modified_at: Date,
+			/*creator_name: String,
 			notes : Array,
 			users : Array */
 		});
