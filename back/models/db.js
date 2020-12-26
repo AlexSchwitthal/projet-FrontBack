@@ -8,7 +8,7 @@ DB_PWD = require('./../config.json').DB_PWD;
 
 module.exports = {
 	connectToDB: function() {
-        mongoose.connect('mongodb+srv://' + DB_USER + ':' + DB_PWD + '@' + DB_SRV + '/' + DB_NAME + '?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true})
+        mongoose.connect('mongodb+srv://' + DB_USER + ':' + DB_PWD + '@' + DB_SRV + '/' + DB_NAME + '?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false})
         .then(() => {
             console.log('Successfully connected to DB!');
         })

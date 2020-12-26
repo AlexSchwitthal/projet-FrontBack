@@ -12,9 +12,21 @@ const queries = require('./models/queries.js');
 /* queries.getAllUsers().then(users => {
   console.log(users);
 }) */
+
+var newValue = {};
+newValue._id = "5fe7b8d0b7562a31f0e94d6a";
+newValue.content = "le copier-coller c'est mal";
+queries.editTweet(newValue).then(result => {
+  console.log(result);
+})
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json()); 
-app.use(session({secret:"FrontBack", cookie:{maxAge: 24 * 60 * 60 * 1000}}));
+app.use(session({
+  secret:"FrontBack", 
+  cookie:{maxAge: 24 * 60 * 60 * 1000},
+  resave: true,
+  saveUninitialized: true
+}));
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");

@@ -120,7 +120,7 @@ module.exports = {
 
 
     editTweet: async function (newValues) {
-        return users.findOneAndUpdate({ _id: mongoose.Types.ObjectId(newValues._id) }, {
+        return tweets.findOneAndUpdate({ _id: mongoose.Types.ObjectId(newValues._id) }, {
             $set: {
                 content: newValues.content,
                 modified_at: new Date(),
