@@ -12,6 +12,10 @@ export class UsersService {
 
   constructor(private http: HttpClient) { }
 
+  getUser(login:any): any {
+    return this.http.post("http://localhost:3000/user", {login: login}, { withCredentials : true});
+  }
+
   getUsers(): any {
     return this.http.get("http://localhost:3000/users", { withCredentials : true});
   }

@@ -92,6 +92,22 @@ app.get('/logout', (req, res) => {
   });
 });
 
+
+app.post('/user', async (req, res) => {
+  try {
+    const user = await queries.getSpecificUser(req.body.login);
+    if(user == null) {
+      res.status(404).json({error: "erreur"});
+    }
+    else {
+      res.status(200).json(user);
+    }
+  }
+  catch(e) {
+    res.status(401).json(e);
+  }
+});
+
 app.get('/users', async (req, res) => {
   try {
     const allUsers = await queries.getAllUsers();
