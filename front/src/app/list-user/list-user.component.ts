@@ -32,16 +32,24 @@ export class ListUserComponent implements OnInit {
 
   keyupSearch(value): void{
     console.log("aaaa");
-    let tab = document.getElementById("#utilisateurs");
-    for (var i = 0; tab.childNodes.length; i++){
-      console.log(tab.childNodes[i]);
-      /* if ((tab.childNodes[i].nickname().include() == -1) {
-        $(this).css("display", "none");
+    let tab = document.getElementById("tabUtilisateurs");
+    var children = Array.from(document.getElementsByClassName("userList") as HTMLCollectionOf<HTMLElement>);
+    console.log(children.length);
+    children.forEach(element => {      
+      console.log(element);
+      if (value==""){
+        element.style.display = "block";
       }
-      else {
-        $(this).css("display", "block");
-      } */
-    }
+      else{
+        if (element.textContent.search(value) == -1){
+          element.style.display = "none";
+        }
+        else{
+          element.style.display = "block";
+        }
+      }
+      
+    });
     /* tab.childNodes.each(function() {
       if ($(this).text().search(userInput) == -1) {
         $(this).css("display", "none");
