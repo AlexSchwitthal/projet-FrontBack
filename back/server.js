@@ -12,13 +12,12 @@ const queries = require('./models/queries.js');
 /* queries.getAllUsers().then(users => {
   console.log(users);
 }) */
-
-var newValue = {};
-newValue._id = "5fe7b8d0b7562a31f0e94d6a";
-newValue.content = "le copier-coller c'est mal";
-queries.editTweet(newValue).then(result => {
+/* 
+queries.addFollowing("5fe36d4cafd9ee405473bd97", "5fe63c6e5875020a640b512a").then(result => {
   console.log(result);
 })
+ */
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json()); 
 app.use(session({
@@ -165,6 +164,16 @@ app.get('/tweet/:creatorid', async (req, res) => {
 app.put('/editTweet', async (req, res) => {
   const isEdited = await queries.editTweet(req.body.tweet);
   if(isEdited != null) {
+    res.status(200).json({msg: "success"});
+  }
+  else {
+    res.status(401).json({error: "erreur"});
+  }
+});
+
+app.put('/addFollowing', async (req, res) => {
+  var result = await queries.addFollowing(req.body.userId, req.body.followingId);
+  if(result != "-1") {
     res.status(200).json({msg: "success"});
   }
   else {

@@ -52,11 +52,32 @@ export class ProfileComponent implements OnInit {
   }
 
   checkFollowing():any{
-    if (this.authService.connectedUser.following.includes(this.userPage._id)){
-      this.isFollowing=true;
+    var exist = false;
+    for(var user of this.authService.connectedUser.following) {
+      if(user.followingId == this.userPage._id) {
+        var exist = true;
+      }
     }
-    else{
-      this.isFollowing=false;
+    if(exist) {
+      this.isFollowing = true;
     }
+    else {
+      this.isFollowing = false;
+    }
+  }
+
+  addFollowing():any {
+    this.usersService.addFollowing(this.authService.connectedUser._id, this.userPage._id).subscribe(
+      (result:any) => {
+        this.isFollowing = true;
+      },
+      (error:any) => {
+        console.log(error);
+      }
+    )
+  }
+
+  removeFollowing():any {
+
   }
 }

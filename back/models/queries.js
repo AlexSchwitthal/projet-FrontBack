@@ -128,4 +128,19 @@ module.exports = {
         }).exec();
     },
 
+    addFollowing: async function(userId, followingId) {
+        const user = await this.getUserById(userId);
+        for(var userFollowed of user.following) {
+            if(userFollowed.followingId == followingId) {
+                return "-1";
+            }
+        }
+        var newFollowing = {
+            followingId: mongoose.Types.ObjectId(followingId),
+        }
+        user.following.push(newFollowing);
+        user.save();
+        return newFollowing;
+    },
+
 };

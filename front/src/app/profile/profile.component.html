@@ -16,13 +16,9 @@
     </div>
 
     <span *ngIf="isOwnProfile===false">
-        <span *ngIf="isFollowing===false">
-            <button *ngIf="isFollowing===false" mat-raised-button color="primary">S'abonner</button>
-            <button *ngIf="isFollowing===true" mat-raised-button color="warn">Se désabonner</button>
-        </span>
+        <button *ngIf="isFollowing===false" (click)="addFollowing()" mat-raised-button color="primary">S'abonner</button>
+        <button *ngIf="isFollowing===true" (click)="removeFollowing()" mat-raised-button color="warn">Se désabonner</button>
     </span>
-
-
 </span>
 
 <span *ngIf="isValidUser===false">
