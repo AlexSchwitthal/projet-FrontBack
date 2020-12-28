@@ -6,14 +6,23 @@
 <br/>
 <span *ngIf="isValidUser===true">
     <div>
-        nom d'utilisateur : {{this.userPage.login}}
+        Nom d'utilisateur : {{this.userPage.login}}
     </div>
     <div>
-        mot de passe : {{this.userPage.password}}
+        Mot de passe : {{this.userPage.password}}
     </div>
     <div>
-        suivi par {{this.userPage.following.length}} personne(s)
+        Abonné(e) à {{this.userPage.following.length}} personne(s)
     </div>
+
+    <span *ngIf="isOwnProfile===false">
+        <span *ngIf="isFollowing===false">
+            <button *ngIf="isFollowing===false" mat-raised-button color="primary">S'abonner</button>
+            <button *ngIf="isFollowing===true" mat-raised-button color="warn">Se désabonner</button>
+        </span>
+    </span>
+
+
 </span>
 
 <span *ngIf="isValidUser===false">
