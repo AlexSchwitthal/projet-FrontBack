@@ -78,6 +78,13 @@ export class ProfileComponent implements OnInit {
   }
 
   removeFollowing():any {
-
+    this.usersService.removeFollowing(this.authService.connectedUser._id, this.userPage._id).subscribe(
+      (result:any) => {
+        this.isFollowing = false;
+      },
+      (error:any) => {
+        console.log(error);
+      }
+    )
   }
 }

@@ -17,6 +17,10 @@ queries.addFollowing("5fe36d4cafd9ee405473bd97", "5fe63c6e5875020a640b512a").the
   console.log(result);
 })
  */
+/* 
+queries.removeFollowing("5fe67447072db077a43035d0", "5fe36d4cafd9ee405473bd97").then(result => {
+  console.log(result);
+}) */
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json()); 
@@ -180,6 +184,17 @@ app.put('/addFollowing', async (req, res) => {
     res.status(401).json({error: "erreur"});
   }
 });
+
+
+app.post('/removeFollowing', async(req, res) => {
+  var result = await queries.removeFollowing(req.body.userId, req.body.followingId);
+  if(result == "1") {
+    res.status(200).json({msg: "success"});
+  }
+  else {
+    res.status(401).json({error: "erreur"});
+  }
+})
 
 app.listen(port, () => {
   console.log('app listening to http://localhost:' + port);

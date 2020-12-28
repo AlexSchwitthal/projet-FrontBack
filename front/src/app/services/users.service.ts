@@ -32,7 +32,7 @@ export class UsersService {
     return this.http.put("http://localhost:3000/addFollowing", {userId: userId, followingId: followingId}, { withCredentials : true });
   }
 
-  removeFollowing(): any {
-
+  removeFollowing(userId:any, followingId: any): any {
+    return this.http.post("http://localhost:3000/removeFollowing", {userId: userId, followingId: followingId}, { withCredentials : true });
   }
 }

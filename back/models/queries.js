@@ -128,8 +128,10 @@ module.exports = {
         }).exec();
     },
 
+    // ajoute followingId à la liste des following de userId
     addFollowing: async function(userId, followingId) {
         const user = await this.getUserById(userId);
+
         for(var userFollowed of user.following) {
             if(userFollowed.followingId == followingId) {
                 return "-1";
@@ -142,5 +144,29 @@ module.exports = {
         user.save();
         return newFollowing;
     },
+
+    // supprime followingId à la liste des following de userId
+    removeFollowing: async function(userId, followingId) {
+        const user = await this.getUserById(userId);
+        users.updateOne(
+            {
+                _id: mongoose.Types.ObjectId(userId)
+            }, 
+            {
+                $pull: 
+                {
+                    following: 
+                    {
+                        followingId: mongoose.Types.ObjectId(followingId)
+                    }
+                }
+            }, 
+            function(err){
+                if(err) return err;
+            }
+        );
+        user.save();
+        return "1";
+    }
 
 };
