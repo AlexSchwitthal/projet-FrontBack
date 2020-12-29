@@ -118,7 +118,14 @@ module.exports = {
 
     //recupere un tweet par id
     getTweetByCreatorId: function (creator_id) {
-        return tweets.find({creator_id: creator_id}).exec();
+        return tweets.find(
+            {creator_id: creator_id},
+            null, 
+            {
+                sort: {
+                    created_at: -1
+                }
+            }).exec();
     },
 
     // change la valeur d'un tweet
@@ -184,15 +191,14 @@ module.exports = {
         }
         followersArray.push(userId.toString());                                                                    
 
-        return tweets.find( 
-            { creator_id : { $in : followersArray } } 
-        ,
-        null, 
-        {
-            sort: {
-                created_at: -1
+        return tweets.find(
+            { creator_id : { $in : followersArray } } ,
+            null, 
+            {
+                sort: {
+                    created_at: -1
+                }
             }
-        });
-
+        );
     }
 };

@@ -26,9 +26,9 @@ queries.getFollowers("5fe36d4cafd9ee405473bd97").then(result => {
   console.log(result);
 }) */
 
-queries.getFeed("5fe36d4cafd9ee405473bd97").then(result => {
+/* queries.getFeed("5fe36d4cafd9ee405473bd97").then(result => {
   console.log(result);
-})
+}) */
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
