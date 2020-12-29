@@ -21,6 +21,15 @@ queries.addFollowing("5fe36d4cafd9ee405473bd97", "5fe63c6e5875020a640b512a").the
 queries.removeFollowing("5fe67447072db077a43035d0", "5fe36d4cafd9ee405473bd97").then(result => {
   console.log(result);
 }) */
+/* 
+queries.getFollowers("5fe36d4cafd9ee405473bd97").then(result => {
+  console.log(result);
+}) */
+
+queries.getFeed("5fe36d4cafd9ee405473bd97").then(result => {
+  console.log(result);
+})
+
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json()); 

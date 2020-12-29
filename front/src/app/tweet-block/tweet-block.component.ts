@@ -42,7 +42,6 @@ export class TweetBlockComponent implements OnInit {
     this.userService.getUserById(this.tweet.creator_id).subscribe(
       (user:any) => {
         this.tweetCreator = new User(user._id, user.login, user.password, user.nickname, user.following);
-        console.log(user);
       },
       (error:any) => {
         console.log(error);

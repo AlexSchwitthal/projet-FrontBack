@@ -26,6 +26,7 @@ module.exports = {
         });
     },
 
+    // récupère un utilisateur par son pseudo et son mot de passe
     getUserByLoginAndPassword: async function (login, password) {
         const currentUser = await this.getSpecificUser(login);
         if (currentUser == null) {
@@ -40,6 +41,7 @@ module.exports = {
         }
     },
 
+    // récupère un utilisateur par son id
     getUserById: async function (userId) {
         return users.findOne({ _id: mongoose.Types.ObjectId(userId) }, (error, user) => {
             if (error) return error;
@@ -71,6 +73,8 @@ module.exports = {
             return "-1";
         }
     },
+    
+    // changement des valeurs de mot de passe et/ou pseudo d'un utilisateur
     editUser: async function (newValues) {
         var newPassword = newValues.password;
         if (newValues.password.length != 60) {
@@ -84,6 +88,7 @@ module.exports = {
         }).exec();
     },
 
+    // suppression d'un utilisateur
     deleteUser: function (userId) {
         return users.findOneAndDelete({ _id: mongoose.Types.ObjectId(userId) }).exec();
     },
@@ -104,8 +109,6 @@ module.exports = {
             }
         });
         return newTweet;
-
-
     },
 
     //supprime une publication
@@ -118,7 +121,7 @@ module.exports = {
         return tweets.find({creator_id: creator_id}).exec();
     },
 
-
+    // change la valeur d'un tweet
     editTweet: async function (newValues) {
         return tweets.findOneAndUpdate({ _id: mongoose.Types.ObjectId(newValues._id) }, {
             $set: {
@@ -167,6 +170,29 @@ module.exports = {
         );
         user.save();
         return "1";
-    }
+    },
 
+    getFollowers: async function(userId) {
+        return users.find({"following.followingId": mongoose.Types.ObjectId(userId)});
+    },
+
+    getFeed: async function(userId) {
+        var user = await this.getUserById(userId);
+        var followersArray = [];
+        for(var follower of user.following) {
+            followersArray.push(follower.followingId.toString());
+        }
+        followersArray.push(userId.toString());                                                                    
+
+        return tweets.find( 
+            { creator_id : { $in : followersArray } } 
+        ,
+        null, 
+        {
+            sort: {
+                created_at: -1
+            }
+        });
+
+    }
 };
