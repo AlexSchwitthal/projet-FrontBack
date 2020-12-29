@@ -15,16 +15,11 @@ export class TweetBlockComponent implements OnInit {
   @Input() tweet: Tweet;
   @Output() deleteTweet = new EventEmitter<Tweet>();
   tweetCreator: User;
-  formatDate: any;
 
   constructor(public tweetService: TweetService, public userService: UsersService) { }
 
   ngOnInit(): void {
-    //console.log(typeof this.tweet.created_at);
-    //console.log(Date.parse(this.tweet.created_at));
     this.getTweetCreator();
-    /* const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    console.log(this.tweet.created_at.toLocaleDateString('fr-FR', options)); */
   }
 
   deleteTweetEvent(): void  {
