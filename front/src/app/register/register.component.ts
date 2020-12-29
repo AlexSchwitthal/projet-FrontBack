@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -11,14 +12,20 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 
 
 export class RegisterComponent implements OnInit {
+  
   hide = true;
-
   login:any = "";
   password:any = "";
+  pattern: any;
 
   constructor(private router: Router, public authService: AuthService, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+    this.pattern = new FormControl('', [
+      Validators.required,
+      Validators.pattern('^[0-9]*$'),
+    ])
+    
   }
 
   submit():any {
@@ -44,5 +51,12 @@ export class RegisterComponent implements OnInit {
 				panelClass: ['mat-toolbar', 'mat-warn'],
 				verticalPosition: 'top'
 		});
-	}
+  }
+  
+  regexValidator(event: any) {
+    const pattern = /^[a-zA-Z0-9_\-]*$/;   
+    if (!pattern.test(event.target.value)) {
+      event.target.value = event.target.value.replace(/[^a-zA-Z0-9_\-]/g, "");
+    }
+  }
 }

@@ -9,7 +9,7 @@
         </span>
         <mat-form-field>
             <mat-label>Saisir pseudo</mat-label>
-            <input matInput type="text" [(ngModel)]="nickname" maxlength="15"> 
+            <input matInput type="text" [(ngModel)]="nickname" (input)="regexValidator($event)" maxlength="15"> 
         </mat-form-field>
         <button (click)="changeNickname()" mat-raised-button color="primary" class="validation">
             Changer pseudonyme

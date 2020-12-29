@@ -10,7 +10,7 @@
                         
                         <mat-form-field> 
                             <mat-label>Nom d'utilisateur</mat-label>
-                            <input matInput type="text" [(ngModel)]="login" maxlength="15" required="true"> 
+                            <input matInput type="text" [(ngModel)]="login" (input)="regexValidator($event)"  maxlength="15" required="true"> 
                         </mat-form-field>
                         
                         <br/><br/>
@@ -24,7 +24,6 @@
                         </mat-form-field>
                         
                         <br/><br/>
-                        
                         <div class="d-flex justify-content-center">
                             <button (click)="submit()" mat-raised-button color="primary">
                                 S'inscrire

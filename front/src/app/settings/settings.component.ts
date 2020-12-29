@@ -71,5 +71,12 @@ export class SettingsComponent implements OnInit {
 				panelClass: ['mat-toolbar', 'mat-primary'],
 				verticalPosition: 'top'
 		});
-	}
+  }
+  
+  regexValidator(event: any) {
+    const pattern = /^[a-zA-Z0-9_\-]*$/;   
+    if (!pattern.test(event.target.value)) {
+      event.target.value = event.target.value.replace(/[^a-zA-Z0-9_\-]/g, "");
+    }
+  }
 }
