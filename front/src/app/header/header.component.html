@@ -1,6 +1,7 @@
 <mat-toolbar color="primary" class="example-toolbar">
-	<button mat-icon-button>
+<!-- 	<button mat-icon-button>
         <mat-icon>menu</mat-icon>
-    </button>
-	<h1 class>Bienvenue <span [innerHTML]="this.authService.connectedUser?.nickname"></span> ! [Le nom de l'app qu'on a pas encore choisi]</h1>
+    </button> -->
+    <img id="logoHeader" src="favicon.ico" alt="logo"/>
+	<h1 class>Bienvenue sur Kwitter, <span [innerHTML]="this.authService.connectedUser?.nickname"></span> !</h1>
 </mat-toolbar>
