@@ -125,7 +125,6 @@ app.post('/user', async (req, res) => {
 
 
 app.post('/userById', async (req, res) => {
-  console.log("mdr");
   try {
     const user = await queries.getUserById(req.body.userId);
     if(user == null) {

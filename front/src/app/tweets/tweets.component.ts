@@ -24,7 +24,6 @@ export class TweetsComponent implements OnInit {
       (result:any) => {
         this.tweet = "";
         this.getTweet();
-        console.log("ok");
       },
       (error:any) => {
         console.log(error);
@@ -53,7 +52,7 @@ export class TweetsComponent implements OnInit {
         this.tweets.splice(index, 1);
       },
       (error) => {
-        console.log("Delete error");
+        console.log(error);
       }
     );
   }
