@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ListUserComponent } from './list-user/list-user.component';
+import { TweetsComponent } from './tweets/tweets.component';
 import { SettingsComponent } from './settings/settings.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { NotAuthGuardService } from './services/not-auth-guard.service';
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path:'settings', canActivate: [AuthGuardService], component:SettingsComponent},
   {path:'list-user', canActivate: [AuthGuardService], component:ListUserComponent},
   {path:'profile/:username', canActivate: [AuthGuardService], component:ProfileComponent},
+  {path:'tweets', canActivate: [AuthGuardService], component:TweetsComponent},
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: '**', redirectTo: 'login' }
 /*   {path:'', component:LoginComponent},

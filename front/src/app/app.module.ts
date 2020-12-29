@@ -26,6 +26,9 @@ import { HeaderComponent } from './header/header.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ListUserComponent } from './list-user/list-user.component';
+import { TweetComponent } from './tweet/tweet.component';
+import { TweetsComponent } from './tweets/tweets.component';
+import { TweetBlockComponent } from './tweet-block/tweet-block.component';
 
 
 
@@ -39,7 +42,10 @@ import { ListUserComponent } from './list-user/list-user.component';
     HeaderComponent,
     ProfileComponent,
     SettingsComponent,
-    ListUserComponent
+    ListUserComponent,
+    TweetComponent,
+    TweetsComponent,
+    TweetBlockComponent
   ],
   imports: [
     BrowserModule,

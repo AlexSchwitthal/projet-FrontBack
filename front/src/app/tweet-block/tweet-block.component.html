@@ -1,0 +1,40 @@
+<mat-card class="tweet" *ngIf="tweetStatus==='view'">
+    <mat-card-content>
+        <p>
+            {{tweet.content}}
+        </p>
+    </mat-card-content>
+    <mat-card-actions>
+        <button class="delete" mat-raised-button color="accent" (click)="deleteTweetEvent()">Supprimer</button>
+        <button class="edit" mat-button (click)="tweetStatus='edit'">Modifier</button>
+    </mat-card-actions>
+</mat-card>
+
+
+<mat-card class="tweet edit" *ngIf="tweetStatus==='edit'">
+    <mat-card-content>
+        <mat-form-field>
+            <mat-label>Ecrivez ici...</mat-label>
+            <textarea matInput placeholder="Aujourd'hui..." [(ngModel)]="tweet.content"></textarea>
+        </mat-form-field>
+    </mat-card-content>
+
+    <mat-card-actions>
+        <button class="delete" mat-raised-button color="accent" (click)="deleteTweetEvent()">Supprimer</button>
+        <button class="update" mat-raised-button color="primary" (click)="updateTweet()">Enregistrer</button>
+    </mat-card-actions>
+</mat-card>
+
+
+<mat-card class="tweet" *ngIf="tweetStatus==='error'" style="background:red; color:white;">
+    <mat-card-header>
+        Erreur, essayez encore
+    </mat-card-header>
+    <mat-card-actions>
+        <button class="ok" mat-raised-button color="warn" (click)="tweetStatus='edit'">Ok</button>
+    </mat-card-actions>
+</mat-card>
+
+<mat-card class="tweet loading" *ngIf="tweetStatus==='loading'">
+    <mat-card-header>Chargement...</mat-card-header>
+</mat-card>
