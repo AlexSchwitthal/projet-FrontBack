@@ -135,7 +135,6 @@ app.post('/user', async (req, res) => {
 
 app.post('/userById', async (req, res) => {
   try {
-    console.log(req.body.userId);
     const user = await queries.getUserById(req.body.userId);
     if(user == null) {
       res.status(404).json({error: "erreur"});
@@ -177,7 +176,7 @@ app.post('/deleteTweet', async (req, res) => {
     res.status(200).json({msg: "success"});
   }
   else {
-    res.status(401).json({error: "erreur"});
+    res.status(404).json({error: "erreur"});
   }
 });
 
@@ -187,21 +186,30 @@ app.get('/tweets/:creatorid', async (req, res) => {
     res.json(result);
   }
   catch(e) {
-    res.status(401).json(e);
+    res.status(404).json(e);
   }
 });
 
 app.get('/tweetsName/:creatorName', async (req, res) => {
   try {
-    const user = await queries.getSpecificUser(req.body.creatorName);
-    console.log(user);
-    //  const result = await queries.getTweetByCreatorId(req.params.creatorId);
-    res.json("mdr");
-    //res.json(result);
+    const user = await queries.getSpecificUser(req.params.creatorName);
+    const result = await queries.getTweetByCreatorId(user._id);
+    res.json(result);
   }
   catch(e) {
-    res.status(401).json(e);
+    res.status(404).json(e);
   }
+});
+
+app.get('/getFeed/:creatorId', async (req, res) => {
+  try {
+    const result = await queries.getFeed(req.params.creatorId);
+    res.json(result);
+  }
+  catch(e) {
+    res.status(404).json(e);
+  }
+
 });
 
 app.put('/editTweet', async (req, res) => {

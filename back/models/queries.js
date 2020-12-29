@@ -119,7 +119,7 @@ module.exports = {
     //recupere un tweet par id
     getTweetByCreatorId: function (creator_id) {
         return tweets.find(
-            {creator_id: creator_id},
+            {creator_id: creator_id.toString()},
             null, 
             {
                 sort: {
@@ -186,6 +186,9 @@ module.exports = {
 
     getFeed: async function(userId) {
         var user = await this.getUserById(userId);
+        if(user == null) {
+            return "-1";
+        }
         var followersArray = [];
         for(var follower of user.following) {
             followersArray.push(follower.followingId.toString());

@@ -10,33 +10,40 @@ import { TweetService } from '../services/tweet.service';
 })
 export class TweetsComponent implements OnInit {
 
-  //@Input() parentComponent: String;
+   @Input() parentComponent: String;
   tweet: any;
   tweets: any;
-/*   functionToCall: any; */
+  functionToCall: any;
+  interval: any;
 
   constructor(public authService : AuthService, public tweetService: TweetService) { }
 
   ngOnInit(): void {
-/*     console.log(this.parentComponent);
+    console.log(this.parentComponent);
     if(this.parentComponent == "home") {
       this.functionToCall = this.tweetService.getFeed(this.authService.connectedUser._id);
     } 
     else {
       this.functionToCall = this.tweetService.getTweetsByCreatorName(this.parentComponent);
     }
-    this.parentComponent = ""; */
     this.getTweets();
-    setInterval(() => {
+    this.interval = setInterval(() => {
       this.refreshTweets();
-    }, 5000);
+    }, 1000);
   }
+
+  ngOnDestroy() {
+    if (this.interval) {
+      clearInterval(this.interval);
+    }
+  }
+
 
   addTweet(): void {
     this.tweetService.addTweet(this.authService.connectedUser._id, this.tweet).subscribe(
       (result:any) => {
         this.tweet = "";
-        this.getTweets();
+        this.refreshTweets();
       },
       (error:any) => {
         console.log(error);
@@ -45,7 +52,7 @@ export class TweetsComponent implements OnInit {
   }
 
   getTweets(): void {
-    this.tweetService.getTweets(this.authService.connectedUser._id).subscribe(
+    this.functionToCall.subscribe(
       (tweetsList:any) => {
         this.tweets = [];
         for(var element of tweetsList) {
@@ -59,7 +66,7 @@ export class TweetsComponent implements OnInit {
   }
 
   refreshTweets(): void {
-    this.tweetService.getTweets(this.authService.connectedUser._id).subscribe(
+    this.functionToCall.subscribe(
     //this.functionToCall.subscribe(
       (newTweets:any) => {
         // suppression des tweets qui n'existe plus en DB
@@ -80,9 +87,9 @@ export class TweetsComponent implements OnInit {
           }
           // ajout des nouveaux tweets au début de la liste
           if(!this.alreadyExist(element, this.tweets)) {
-            if(element.creator_id != this.authService.connectedUser._id) {
+         //   if(element.creator_id != this.authService.connectedUser._id) {
               this.tweets.unshift(new Tweet(element._id, element.content, element.created_at, element.creator_id));
-            }
+          //  }
           }
         }
       },
@@ -106,7 +113,7 @@ export class TweetsComponent implements OnInit {
 
   alreadyExist(newTweet: Tweet, oldTweetsList: Tweet[]): boolean {
     for(var tweet of oldTweetsList) {
-      if(tweet._id === newTweet._id && tweet.content === newTweet.content) {
+      if(tweet._id === newTweet._id) {
         return true;
       }
     }
