@@ -19,7 +19,6 @@ export class TweetsComponent implements OnInit {
   constructor(public authService : AuthService, public tweetService: TweetService) { }
 
   ngOnInit(): void {
-    console.log(this.parentComponent);
     if(this.parentComponent == "home") {
       this.functionToCall = this.tweetService.getFeed(this.authService.connectedUser._id);
     } 

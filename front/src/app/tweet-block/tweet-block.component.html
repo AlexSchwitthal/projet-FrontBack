@@ -7,7 +7,7 @@
             {{tweet.content}}
         </p>
     </mat-card-content>
-    <mat-card-actions>
+    <mat-card-actions *ngIf="isTweetCreator">
         <button class="delete" mat-raised-button color="accent" (click)="deleteTweetEvent()">Supprimer</button>
         <button class="edit" mat-button (click)="tweetStatus='edit'">Modifier</button>
     </mat-card-actions>

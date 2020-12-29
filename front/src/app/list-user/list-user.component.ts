@@ -8,15 +8,23 @@ import { User } from '../models/user';
   styleUrls: ['./list-user.component.scss']
 })
 export class ListUserComponent implements OnInit {
+  
   users: User[];
+  interval: any;
 
   constructor(public usersService: UsersService) { }
 
   ngOnInit(): void {
     this.getUsers();
-    setInterval(() => {
+    this.interval = setInterval(() => {
         this.getUsers();
     }, 2000);
+  }
+
+  ngOnDestroy() {
+    if (this.interval) {
+      clearInterval(this.interval);
+    }
   }
 
   getUsers(){
