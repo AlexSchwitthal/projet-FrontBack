@@ -1,6 +1,9 @@
 <mat-card class="tweet" *ngIf="tweetStatus==='view'">
     <mat-card-content>
         <p>
+            <b>{{tweetCreator?.nickname}}</b> @{{tweetCreator?.login}}
+        </p>
+        <p>
             {{tweet.content}}
         </p>
     </mat-card-content>

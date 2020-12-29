@@ -11,7 +11,6 @@
         <button (click)="this.addTweet()" mat-raised-button color="accent">Poster</button>
     </mat-card-actions>
 </mat-card>
-
 <div class="tweets">
     <app-tweet-block *ngFor="let tweet of tweets" [tweet]="tweet" (deleteTweet)="deleteTweet($event)" (editTweet)="tweetService.editTweet($event)"></app-tweet-block>
 </div>

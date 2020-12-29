@@ -14,6 +14,10 @@ export class TweetComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  addTweet() {
+
+  }
+  
   updateTweet(){};
 
 }

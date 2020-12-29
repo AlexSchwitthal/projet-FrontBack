@@ -16,6 +16,10 @@ export class UsersService {
     return this.http.post("http://localhost:3000/user", {login: login}, { withCredentials : true});
   }
 
+  getUserById(userId:any): any {
+    return this.http.post("http://localhost:3000/userById", {userId: userId}, { withCredentials : true});
+  }
+
   getUsers(): any {
     return this.http.get("http://localhost:3000/users", { withCredentials : true});
   }

@@ -123,6 +123,23 @@ app.post('/user', async (req, res) => {
   }
 });
 
+
+app.post('/userById', async (req, res) => {
+  console.log("mdr");
+  try {
+    const user = await queries.getUserById(req.body.userId);
+    if(user == null) {
+      res.status(404).json({error: "erreur"});
+    }
+    else {
+      res.status(200).json(user);
+    }
+  }
+  catch(e) {
+    res.status(401).json(e);
+  }
+});
+
 app.get('/users', async (req, res) => {
   try {
     const allUsers = await queries.getAllUsers();

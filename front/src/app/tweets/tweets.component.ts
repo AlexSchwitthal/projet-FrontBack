@@ -11,17 +11,19 @@ import { TweetService } from '../services/tweet.service';
 export class TweetsComponent implements OnInit {
   
   tweet: any;
-  tweets:any;
+  tweets: any;
 
   constructor(public authService : AuthService, public tweetService: TweetService) { }
 
   ngOnInit(): void {
+    this.getTweet();
   }
 
   addTweet() {
     this.tweetService.addTweet(this.authService.connectedUser._id, this.tweet).subscribe(
       (result:any) => {
         this.tweet = "";
+        this.getTweet();
         console.log("ok");
       },
       (error:any) => {
@@ -31,10 +33,20 @@ export class TweetsComponent implements OnInit {
   }
 
   getTweet(){
-    this.tweetService.getTweets(this.authService.connectedUser._id)
+    this.tweetService.getTweets(this.authService.connectedUser._id).subscribe(
+      (tweetsList:any) => {
+        this.tweets = new Array();
+        for(var element of tweetsList) {
+          this.tweets.push(new Tweet(element._id, element.content, element.created_at, element.creator_id));
+        }
+      },
+      (error:any) => {
+        console.log(error);
+      }
+    )
   }
 
-  deleteNote(tweet:Tweet) {
+  deleteTweet(tweet:Tweet) {
     this.tweetService.deleteTweet(tweet._id).subscribe(
       () => {
         let index = this.tweets.indexOf(tweet);
@@ -45,5 +57,4 @@ export class TweetsComponent implements OnInit {
       }
     );
   }
-
 }

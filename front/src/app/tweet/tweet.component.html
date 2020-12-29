@@ -2,14 +2,12 @@
     <mat-card-header>
         <mat-card-title>Exprimes toi !</mat-card-title>
     </mat-card-header>
-
     <mat-card-content>
         <mat-form-field>
-            <textarea matInput [(ngModel)]="tweet.content" placeholder="Aujourd'hui..."></textarea>
-        </mat-form-field>       
+            <textarea matInput [(ngModel)]="tweet" placeholder="Aujourd'hui..."></textarea>
+        </mat-form-field>
     </mat-card-content>
-
     <mat-card-actions>
-        <button (click)="updateTweet()" mat-raised-button color="accent">Enregistrert</button>
+        <button (click)="this.addTweet()" mat-raised-button color="accent">Poster</button>
     </mat-card-actions>
 </mat-card>
