@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Tweet } from '../models/tweet';
 import { AuthService } from '../services/auth.service';
 import { TweetService } from '../services/tweet.service';
@@ -9,21 +9,34 @@ import { TweetService } from '../services/tweet.service';
   styleUrls: ['./tweets.component.scss']
 })
 export class TweetsComponent implements OnInit {
-  
+
+  //@Input() parentComponent: String;
   tweet: any;
   tweets: any;
+/*   functionToCall: any; */
 
   constructor(public authService : AuthService, public tweetService: TweetService) { }
 
   ngOnInit(): void {
-    this.getTweet();
+/*     console.log(this.parentComponent);
+    if(this.parentComponent == "home") {
+      this.functionToCall = this.tweetService.getFeed(this.authService.connectedUser._id);
+    } 
+    else {
+      this.functionToCall = this.tweetService.getTweetsByCreatorName(this.parentComponent);
+    }
+    this.parentComponent = ""; */
+    this.getTweets();
+    setInterval(() => {
+      this.refreshTweets();
+    }, 5000);
   }
 
-  addTweet() {
+  addTweet(): void {
     this.tweetService.addTweet(this.authService.connectedUser._id, this.tweet).subscribe(
       (result:any) => {
         this.tweet = "";
-        this.getTweet();
+        this.getTweets();
       },
       (error:any) => {
         console.log(error);
@@ -31,10 +44,10 @@ export class TweetsComponent implements OnInit {
     );
   }
 
-  getTweet(){
+  getTweets(): void {
     this.tweetService.getTweets(this.authService.connectedUser._id).subscribe(
       (tweetsList:any) => {
-        this.tweets = new Array();
+        this.tweets = [];
         for(var element of tweetsList) {
           this.tweets.push(new Tweet(element._id, element.content, element.created_at, element.creator_id));
         }
@@ -45,7 +58,41 @@ export class TweetsComponent implements OnInit {
     )
   }
 
-  deleteTweet(tweet:Tweet) {
+  refreshTweets(): void {
+    this.tweetService.getTweets(this.authService.connectedUser._id).subscribe(
+    //this.functionToCall.subscribe(
+      (newTweets:any) => {
+        // suppression des tweets qui n'existe plus en DB
+        for(var element of this.tweets) {
+          if(this.hasBeenDeleted(element, newTweets)) {
+            let index = this.tweets.indexOf(element);
+            this.tweets.splice(index, 1);
+          }
+        }
+        for(var element of newTweets) {
+          for(var oldTweet of this.tweets) {
+            // rafraichissement du contenu des tweets qui ont été edité 
+            if(this.contentChange(oldTweet, element)) {
+              if(oldTweet.creator_id != this.authService.connectedUser._id) {
+                oldTweet.content = element.content;
+              }
+            }
+          }
+          // ajout des nouveaux tweets au début de la liste
+          if(!this.alreadyExist(element, this.tweets)) {
+            if(element.creator_id != this.authService.connectedUser._id) {
+              this.tweets.unshift(new Tweet(element._id, element.content, element.created_at, element.creator_id));
+            }
+          }
+        }
+      },
+      (error:any) => {
+        console.log(error);
+      }
+    )
+  }
+
+  deleteTweet(tweet:Tweet): void {
     this.tweetService.deleteTweet(tweet._id).subscribe(
       () => {
         let index = this.tweets.indexOf(tweet);
@@ -55,5 +102,32 @@ export class TweetsComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  alreadyExist(newTweet: Tweet, oldTweetsList: Tweet[]): boolean {
+    for(var tweet of oldTweetsList) {
+      if(tweet._id === newTweet._id && tweet.content === newTweet.content) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  contentChange(oldTweet: Tweet, newTweet: Tweet): boolean {
+    if(oldTweet._id === newTweet._id && oldTweet.content != newTweet.content) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
+  hasBeenDeleted(oldTweet: Tweet, newTweetsList: Tweet[]): boolean {
+    for(var tweet of newTweetsList) {
+      if(tweet._id === oldTweet._id) {
+        return false;
+      }
+    }
+    return true;
   }
 }

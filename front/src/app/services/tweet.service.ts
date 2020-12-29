@@ -12,7 +12,15 @@ export class TweetService {
   constructor(private http: HttpClient) { }
 
   getTweets(creatorId: any):any{
-    return this.http.get("http://localhost:3000/tweet/" + creatorId);
+    return this.http.get("http://localhost:3000/tweets/" + creatorId);
+  }
+
+  getTweetsByCreatorName(creatorName: any):any{
+    return this.http.get("http://localhost:3000/tweetsName/" + creatorName);
+  }
+
+  getFeed(creatorId: any):any{
+    return this.http.get("http://localhost:3000/getFeed/" + creatorId);
   }
 
   addTweet(creatorId: any, tweetContent: string):any{

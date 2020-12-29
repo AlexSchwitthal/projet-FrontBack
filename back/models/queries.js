@@ -125,7 +125,8 @@ module.exports = {
                 sort: {
                     created_at: -1
                 }
-            }).exec();
+            }
+        ).exec();
     },
 
     // change la valeur d'un tweet
