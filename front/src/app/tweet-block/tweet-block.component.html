@@ -8,11 +8,12 @@
         </p>
     </mat-card-content>
     <mat-card-actions>
-        <button *ngIf="!isLiked" class="like" mat-button (click)="likeTweet(); likeTweetEvent()"><mat-icon>favorite_border</mat-icon></button>
+        <button *ngIf="!isLiked" class="like" mat-button (click)="likeTweet()"><mat-icon>favorite_border</mat-icon></button>
         <button *ngIf="isLiked" class="unlike" mat-button (click)="unlikeTweet()"><mat-icon [ngStyle]="{'color':'red'}">favorite</mat-icon></button>
+
         <span [innerHTML]="likesLength"></span>
-        <button *ngIf="isTweetCreator" class="delete" mat-raised-button color="accent" (click)="deleteTweetEvent()">Supprimer</button>
-        <button *ngIf="isTweetCreator" class="edit" mat-button (click)="tweetStatus='edit'">Modifier</button>
+        <button *ngIf="isTweetCreator" class="edit" mat-button (click)="tweetStatus='edit'"><mat-icon>edit</mat-icon></button>
+        <button *ngIf="isTweetCreator" class="delete" mat-button (click)="deleteTweetEvent()"><mat-icon>delete_outline</mat-icon></button>
     </mat-card-actions>
 </mat-card>
 

@@ -83,6 +83,7 @@ export class TweetsComponent implements OnInit {
                 oldTweet.content = element.content;
               }
             }
+            // rafraichissement du nombre de like des tweets dont le nombre de like à changé
             if(this.likesChange(oldTweet, element)) {
                 oldTweet.likes = element.likes;
             }

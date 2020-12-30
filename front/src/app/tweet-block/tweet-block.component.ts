@@ -15,7 +15,6 @@ export class TweetBlockComponent implements OnInit {
   tweetStatus: string="view";
   @Input() tweet: Tweet;
   @Output() deleteTweet = new EventEmitter<Tweet>();
-  @Output() likingTweet = new EventEmitter<Tweet>();
   tweetCreator: User;
   isTweetCreator: Boolean = false;
   isLiked: Boolean = false;
@@ -34,11 +33,6 @@ export class TweetBlockComponent implements OnInit {
 
   deleteTweetEvent(): void  {
     this.deleteTweet.emit(this.tweet);
-  }
-
-  likeTweetEvent(): void  {
-    console.log("mdr");
-    this.likingTweet.emit(this.tweet);
   }
 
   updateTweet(): void {
@@ -70,6 +64,7 @@ export class TweetBlockComponent implements OnInit {
       (result:any) => {
         this.likesLength--;
         this.isLiked = false;
+       
       },
       (error:any) => {
         console.log(error);
@@ -94,5 +89,6 @@ export class TweetBlockComponent implements OnInit {
       }
     )
   }
+
 
 }
