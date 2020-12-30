@@ -16,27 +16,28 @@ export class ProfileComponent implements OnInit {
   isValidUser : boolean;
   isOwnProfile : boolean;
   isFollowing: boolean;
+  followers: User[] = [];
 
   constructor(public usersService : UsersService, private route: ActivatedRoute, private router: Router, public authService: AuthService) { 
     route.params.subscribe(val => {
       this.login = val.username;
       this.getUser(this.login);
-      this.checkOwnProfile(this.login);       
+      this.checkOwnProfile(this.login);   
     });
   }
 
   ngOnInit(): void {
-
   }
 
   getUser(login:any):any {
     this.usersService.getUser(this.login).subscribe(
       (user:any) => {
         this.userPage = new User(user._id, user.login, user.password, user.nickname, user.following);
+        this.getFollowers(); 
         this.isValidUser = true;
         this.checkFollowing();    
       },
-      (error) => {
+      (error:any) => {
         this.userPage = null;
         this.isValidUser = false;
         console.log(error);
@@ -44,6 +45,20 @@ export class ProfileComponent implements OnInit {
     )
   }
   
+  getFollowers() {
+    this.usersService.getFollowers(this.userPage._id).subscribe(
+      (followers:any) => {
+        this.followers = new Array();
+        for(var follower of followers) {
+          this.followers.push(new User(follower._id, follower.login, follower.password, follower.nickname, follower.following));
+        }
+      },
+      (error:any) => {
+        console.log(error);
+      }
+    )
+  }
+
   checkOwnProfile(login:any):any{
     if (this.login === this.authService.connectedUser.login){
       this.isOwnProfile = true;
@@ -70,6 +85,7 @@ export class ProfileComponent implements OnInit {
     this.usersService.addFollowing(this.authService.connectedUser._id, this.userPage._id).subscribe(
       (result:any) => {
         this.isFollowing = true;
+        this.getFollowers();
       },
       (error:any) => {
         console.log(error);
@@ -81,6 +97,7 @@ export class ProfileComponent implements OnInit {
     this.usersService.removeFollowing(this.authService.connectedUser._id, this.userPage._id).subscribe(
       (result:any) => {
         this.isFollowing = false;
+        this.getFollowers();
       },
       (error:any) => {
         console.log(error);

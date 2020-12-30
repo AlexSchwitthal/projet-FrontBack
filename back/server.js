@@ -232,6 +232,10 @@ app.put('/addFollowing', async (req, res) => {
   }
 });
 
+app.post('/getFollowers', async (req, res) => {
+  var result = await queries.getFollowers(req.body.userId);
+  res.json(result);
+})
 
 app.post('/removeFollowing', async(req, res) => {
   var result = await queries.removeFollowing(req.body.userId, req.body.followingId);

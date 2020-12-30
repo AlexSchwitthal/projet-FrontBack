@@ -10,10 +10,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(public authService: AuthService) { }
 
-  currentUsername: any;
 
   ngOnInit(): void {
-    this.currentUsername = this.authService.connectedUser.nickname;
   }
 
 }
