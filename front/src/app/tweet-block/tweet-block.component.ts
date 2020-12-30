@@ -15,6 +15,7 @@ export class TweetBlockComponent implements OnInit {
   tweetStatus: string="view";
   @Input() tweet: Tweet;
   @Output() deleteTweet = new EventEmitter<Tweet>();
+  @Output() likingTweet = new EventEmitter<Tweet>();
   tweetCreator: User;
   isTweetCreator: Boolean = false;
   isLiked: Boolean = false;
@@ -23,7 +24,7 @@ export class TweetBlockComponent implements OnInit {
   constructor(public tweetService: TweetService, public userService: UsersService, public authService: AuthService) { }
 
   ngOnInit(): void {
-    this.likesLength = this.tweet.likes.length;
+    //this.likesLength = this.tweet.likes.length;
     this.getTweetCreator();
     if(this.tweet.creator_id == this.authService.connectedUser._id) {
       this.isTweetCreator = true;
@@ -33,6 +34,11 @@ export class TweetBlockComponent implements OnInit {
 
   deleteTweetEvent(): void  {
     this.deleteTweet.emit(this.tweet);
+  }
+
+  likeTweetEvent(): void  {
+    console.log("mdr");
+    this.likingTweet.emit(this.tweet);
   }
 
   updateTweet(): void {

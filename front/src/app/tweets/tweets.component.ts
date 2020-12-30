@@ -84,9 +84,7 @@ export class TweetsComponent implements OnInit {
               }
             }
             if(this.likesChange(oldTweet, element)) {
-              if(oldTweet.creator_id != this.authService.connectedUser._id) {
                 oldTweet.likes = element.likes;
-              }
             }
           }
           // ajout des nouveaux tweets au début de la liste
