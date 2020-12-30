@@ -55,7 +55,7 @@ export class TweetsComponent implements OnInit {
       (tweetsList:any) => {
         this.tweets = [];
         for(var element of tweetsList) {
-          this.tweets.push(new Tweet(element._id, element.content, element.created_at, element.creator_id));
+          this.tweets.push(new Tweet(element._id, element.content, element.created_at, element.creator_id, element.likes));
         }
       },
       (error:any) => {
@@ -83,11 +83,16 @@ export class TweetsComponent implements OnInit {
                 oldTweet.content = element.content;
               }
             }
+            if(this.likesChange(oldTweet, element)) {
+              if(oldTweet.creator_id != this.authService.connectedUser._id) {
+                oldTweet.likes = element.likes;
+              }
+            }
           }
           // ajout des nouveaux tweets au début de la liste
           if(!this.alreadyExist(element, this.tweets)) {
          //   if(element.creator_id != this.authService.connectedUser._id) {
-              this.tweets.unshift(new Tweet(element._id, element.content, element.created_at, element.creator_id));
+              this.tweets.unshift(new Tweet(element._id, element.content, element.created_at, element.creator_id, element.likes));
           //  }
           }
         }
@@ -121,6 +126,15 @@ export class TweetsComponent implements OnInit {
 
   contentChange(oldTweet: Tweet, newTweet: Tweet): boolean {
     if(oldTweet._id === newTweet._id && oldTweet.content != newTweet.content) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
+  likesChange(oldTweet: Tweet, newTweet: Tweet) : boolean {
+    if(oldTweet._id === newTweet._id && oldTweet.likes.length != newTweet.likes.length) {
       return true;
     }
     else {

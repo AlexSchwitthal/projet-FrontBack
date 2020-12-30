@@ -3,6 +3,7 @@ export class Tweet {
         public _id: any, 
         public content: string, 
         public created_at: Date, 
-        public creator_id: any
+        public creator_id: any,
+        public likes: Array<any>
     ){}
 }

@@ -30,6 +30,14 @@ queries.getFollowers("5fe36d4cafd9ee405473bd97").then(result => {
   console.log(result);
 }) */
 
+/* queries.addLike("5febe395b6eb6d60fc6d7cc5", "5fe36d4cafd9ee405473bd97").then(result => {
+  console.log(result);
+})
+ */
+
+/*  queries.removeLike("5febe395b6eb6d60fc6d7cc5", "5fe36d4cafd9ee405473bd97").then(result => {
+  console.log(result);
+}) */
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json()); 
@@ -235,7 +243,7 @@ app.put('/addFollowing', async (req, res) => {
 app.post('/getFollowers', async (req, res) => {
   var result = await queries.getFollowers(req.body.userId);
   res.json(result);
-})
+});
 
 app.post('/removeFollowing', async(req, res) => {
   var result = await queries.removeFollowing(req.body.userId, req.body.followingId);
@@ -245,7 +253,27 @@ app.post('/removeFollowing', async(req, res) => {
   else {
     res.status(401).json({error: "erreur"});
   }
-})
+});
+
+app.put('/addLike', async(req, res) => {
+  try {
+    var result = await queries.addLike(req.body.tweetId, req.body.userId);
+    res.status(200).json(result);
+  }
+  catch(e) {
+    res.status(404).json(e);
+  }
+});
+
+app.put('/removeLike', async(req, res) => {
+  try {
+    var result = await queries.removeLike(req.body.tweetId, req.body.userId);
+    res.status(200).json(result);
+  }
+  catch(e) {
+    res.status(404).json(e);
+  }
+});
 
 app.listen(port, () => {
   console.log('app listening to http://localhost:' + port);

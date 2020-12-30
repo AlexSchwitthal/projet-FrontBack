@@ -130,6 +130,10 @@ module.exports = {
         ).exec();
     },
 
+    getTweetById: function(tweetId) {
+        return tweets.findOne({_id: mongoose.Types.ObjectId(tweetId)});
+    },
+
     // change la valeur d'un tweet
     editTweet: async function (newValues) {
         return tweets.findOneAndUpdate({ _id: mongoose.Types.ObjectId(newValues._id) }, {
@@ -208,8 +212,47 @@ module.exports = {
     },
 
     // ajoute un like
-    addLikes: async function(tweet, userId) {
-        const user = this.getUserById(userId);
-        
+    addLike: async function(tweetId, userId) {
+        const user = await this.getUserById(userId);
+        const tweet = await this.getTweetById(tweetId);
+        if(user == null || tweet == null) {
+            return "-1";
+        }
+        for(var like of tweet.likes) {
+            if(like.userId == userId) {
+                return "-1";
+            }
+        }
+
+        var newLike = {
+            userId: mongoose.Types.ObjectId(userId),
+        }
+        tweet.likes.push(newLike);
+        tweet.save();
+        return newLike;
+    },
+
+    // ajoute un like
+    removeLike: async function(tweetId, userId) {
+        const tweet = await this.getTweetById(tweetId);
+        tweets.updateOne(
+            {
+                _id: mongoose.Types.ObjectId(tweetId)
+            }, 
+            {
+                $pull: 
+                {
+                    likes: 
+                    {
+                        userId: mongoose.Types.ObjectId(userId)
+                    }
+                }
+            }, 
+            function(err){
+                if(err) return err;
+            }
+        );
+        tweet.save();
+        return "1";
     }
 };
