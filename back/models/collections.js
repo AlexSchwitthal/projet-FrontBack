@@ -17,13 +17,11 @@ module.exports = {
 	tweets: function() {
 		const tweetsSchema = new mongoose.Schema({
 		 	_id: Object,
-			content:  String,
-			creator_id : Object,
-			created_at: Date,
+			content:   { type : String, required : true },
+			creator_id :  { type : Object, required : true },
+			created_at:  { type : Date, required : true },
 			modified_at: Date,
-			/*creator_name: String,
-			notes : Array,
-			users : Array */
+			likes: { type : Array, required : true }
 		});
 		return mongoose.model('tweets', tweetsSchema, 'tweets');
 	}

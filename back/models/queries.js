@@ -102,6 +102,7 @@ module.exports = {
             content: content,
             creator_id: creator_id,
             created_at: new Date(),
+            likes: []
         });
         newTweet.save((error) => {
             if (error) {
