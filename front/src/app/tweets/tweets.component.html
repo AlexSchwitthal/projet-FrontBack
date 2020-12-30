@@ -1,4 +1,4 @@
-<mat-card class="new-tweet">
+<!-- <mat-card class="new-tweet">
     <mat-card-header>
         <mat-card-title>Exprimes toi !</mat-card-title>
     </mat-card-header>
@@ -10,7 +10,7 @@
     <mat-card-actions>
         <button (click)="this.addTweet()" mat-raised-button color="accent">Poster</button>
     </mat-card-actions>
-</mat-card>
+</mat-card> -->
 <div class="tweets">
     <app-tweet-block *ngFor="let tweet of tweets" [tweet]="tweet" [likesLength]="tweet.likes.length" (deleteTweet)="deleteTweet($event)" (editTweet)="tweetService.editTweet($event)"></app-tweet-block>
 </div>

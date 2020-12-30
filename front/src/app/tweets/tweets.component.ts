@@ -10,7 +10,8 @@ import { TweetService } from '../services/tweet.service';
 })
 export class TweetsComponent implements OnInit {
 
-   @Input() parentComponent: String;
+  @Input() parentComponent: String;
+  @Input() tweetText: string;
   tweet: any;
   tweets: any;
   functionToCall: any;
@@ -37,17 +38,22 @@ export class TweetsComponent implements OnInit {
     }
   }
 
-
+  ngOnChanges() {
+    this.addTweet();
+  }
+  
   addTweet(): void {
-    this.tweetService.addTweet(this.authService.connectedUser._id, this.tweet).subscribe(
-      (result:any) => {
-        this.tweet = "";
-        this.refreshTweets();
-      },
-      (error:any) => {
-        console.log(error);
-      }
-    );
+    if(this.tweetText != "") {
+      this.tweetService.addTweet(this.authService.connectedUser._id, this.tweetText).subscribe(
+        (result:any) => {
+          this.tweet = "";
+          this.refreshTweets();
+        },
+        (error:any) => {
+          console.log(error);
+        }
+      );
+    }
   }
 
   getTweets(): void {
