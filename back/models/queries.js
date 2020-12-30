@@ -205,5 +205,11 @@ module.exports = {
                 }
             }
         );
+    },
+
+    // ajoute un like
+    addLikes: async function(tweet, userId) {
+        const user = this.getUserById(userId);
+        
     }
 };
