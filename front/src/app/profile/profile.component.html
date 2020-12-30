@@ -1,34 +1,46 @@
-<app-header></app-header>
-<app-left-sidebar></app-left-sidebar>
-<mat-sidenav #rightSidenav mode="side" opened="true" class="centerNav" [fixedTopGap]="100" [fixedBottomGap]="100">
-	
-<div>bloc de merde pas responsive vu que j'suis nul en design :( </div>
-<br/>
-<span *ngIf="isValidUser===true">
-    <div>
-        Nom d'utilisateur : {{this.userPage.login}}
-    </div>
-    <div>
-        Mot de passe : {{this.userPage.password}}
-    </div>
-    <div>
-        Suivi(e) par <span [innerHTML]="this.followers.length"></span> personne(s)
-    </div>
-    <div>
-        Abonné(e) à {{this.userPage.following.length}} personne(s)
-    </div>
-    
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <app-left-sidebar></app-left-sidebar>
+        </div>
+        <div class="main-content col-9">
+            <app-header></app-header>
+            <mat-sidenav #rightSidenav mode="side" opened="true" class="centerNav" [fixedTopGap]="100"
+                [fixedBottomGap]="100"></mat-sidenav>
 
-    <span *ngIf="isOwnProfile===false">
-        <button *ngIf="isFollowing===false" (click)="addFollowing()" mat-raised-button color="primary">S'abonner</button>
-        <button *ngIf="isFollowing===true" (click)="removeFollowing()" mat-raised-button color="warn">Se désabonner</button>
-    </span>
-</span>
-<app-tweets parentComponent = "{{this.login}}"></app-tweets>
+            <mat-sidenav #rightSidenav mode="side" opened="true" class="centerNav" [fixedTopGap]="100"
+                [fixedBottomGap]="100">
+            </mat-sidenav>
+            <div>bloc de merde pas responsive vu que j'suis nul en design :( </div>
+            <br />
+            <span *ngIf="isValidUser===true">
+                <div>
+                    Nom d'utilisateur : {{this.userPage.login}}
+                </div>
+                <div>
+                    Mot de passe : {{this.userPage.password}}
+                </div>
+                <div>
+                    Suivi(e) par <span [innerHTML]="this.followers.length"></span> personne(s)
+                </div>
+                <div>
+                    Abonné(e) à {{this.userPage.following.length}} personne(s)
+                </div>
+                <span *ngIf="isOwnProfile===false">
+                    <button *ngIf="isFollowing===false" (click)="addFollowing()" mat-raised-button
+                        color="primary">S'abonner</button>
+                    <button *ngIf="isFollowing===true" (click)="removeFollowing()" mat-raised-button color="warn">Se
+                        désabonner</button>
+                </span>
+            </span>
+            <app-tweets parentComponent="{{this.login}}"></app-tweets>
 
-<span *ngIf="isValidUser===false">
-    <div>
-        la page que vous avez demandé n'existe pas ! 
+            <span *ngIf="isValidUser===false">
+                <div>
+                    la page que vous avez demandé n'existe pas !
+                </div>
+            </span>
+
+        </div>
     </div>
-</span>
-</mat-sidenav>
+</div>
