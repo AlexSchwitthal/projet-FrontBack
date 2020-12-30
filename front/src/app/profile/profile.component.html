@@ -32,8 +32,12 @@
                     <button *ngIf="isFollowing===true" (click)="removeFollowing()" mat-raised-button color="warn">Se
                         désabonner</button>
                 </span>
+                <span>
+                    <button mat-raised-button color="primary" (click)="getPublishedTweets()">Tweet(s) publié(s)</button>
+                    <button mat-raised-button color="warn"(click)="getLikedTweets()">Tweet(s) liké(s)</button>
+                </span>
             </span>
-            <app-tweets parentComponent="{{this.login}}"></app-tweets>
+            <app-tweets [list]="this.listToCall" [param]="this.param"></app-tweets>
 
             <span *ngIf="isValidUser===false">
                 <div>

@@ -8,6 +8,7 @@ const port = 3000;
 // DB
 require('./models/db.js').connectToDB();
 const queries = require('./models/queries.js');
+const { getTweetsLiked } = require('./models/queries.js');
 
 /* queries.getAllUsers().then(users => {
   console.log(users);
@@ -36,6 +37,10 @@ queries.getFollowers("5fe36d4cafd9ee405473bd97").then(result => {
  */
 
 /*  queries.removeLike("5febe395b6eb6d60fc6d7cc5", "5fe36d4cafd9ee405473bd97").then(result => {
+  console.log(result);
+}) */
+
+/* queries.getTweetsLiked("5fe67447072db077a43035d0").then(result => {
   console.log(result);
 }) */
 
@@ -169,7 +174,7 @@ app.get('/users', async (req, res) => {
 //Gestion des publications
 
 app.post('/addTweet', async (req, res) => {
-  if(req.body.content == "" || req.body.creator_id == "") {
+  if(req.body.content == "" || req.body.creator_id == "" || req.body.content == undefined) {
     res.status(500).json({error: "erreur"});
   }
   else {
@@ -274,6 +279,12 @@ app.put('/removeLike', async(req, res) => {
     res.status(404).json(e);
   }
 });
+
+app.get('/getTweetsLiked/:userId', async(req, res) => {
+  var result = await queries.getTweetsLiked(req.params.userId);
+  res.status(200).json(result);
+});
+
 
 app.listen(port, () => {
   console.log('app listening to http://localhost:' + port);

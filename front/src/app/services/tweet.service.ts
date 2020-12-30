@@ -48,4 +48,8 @@ export class TweetService {
   removeLike(tweetId:any, userId:any):any {
     return this.http.put("http://localhost:3000/removeLike", {tweetId: tweetId, userId: userId});
   }
+
+  getTweetsLiked(userId:any): any {
+    return this.http.get("http://localhost:3000/getTweetsLiked/" + userId);
+  }
 }

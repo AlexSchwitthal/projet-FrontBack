@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChange } from '@angular/core';
 import { Tweet } from '../models/tweet';
 import { AuthService } from '../services/auth.service';
 import { TweetService } from '../services/tweet.service';
@@ -10,7 +10,8 @@ import { TweetService } from '../services/tweet.service';
 })
 export class TweetsComponent implements OnInit {
 
-  @Input() parentComponent: String;
+  @Input() list: String;
+  @Input() param: string;
   @Input() tweetText: string;
   tweet: any;
   tweets: any;
@@ -20,13 +21,7 @@ export class TweetsComponent implements OnInit {
   constructor(public authService : AuthService, public tweetService: TweetService) { }
 
   ngOnInit(): void {
-    if(this.parentComponent == "home") {
-      this.functionToCall = this.tweetService.getFeed(this.authService.connectedUser._id);
-    } 
-    else {
-      this.functionToCall = this.tweetService.getTweetsByCreatorName(this.parentComponent);
-    }
-    this.getTweets();
+    this.getFunctionToCall();
     this.interval = setInterval(() => {
       this.refreshTweets();
     }, 1000);
@@ -38,12 +33,23 @@ export class TweetsComponent implements OnInit {
     }
   }
 
-  ngOnChanges() {
-    this.addTweet();
+
+  ngOnChanges(changes: SimpleChange) {
+    if(changes['tweetText'] !== undefined) {
+      if(changes['tweetText'] != "") {
+        this.addTweet();
+      }
+    }
+    if(changes['list'] !== undefined && !changes['list'].firstChange && changes['param'] !== undefined && !changes['param'].firstChange) {
+      this.list = changes['list'].currentValue;
+      this.param = changes['param'].currentValue;
+      this.getFunctionToCall();
+    }  
   }
+
   
   addTweet(): void {
-    if(this.tweetText != "") {
+    if(this.tweetText != "" && this.tweetText != undefined) {
       this.tweetService.addTweet(this.authService.connectedUser._id, this.tweetText).subscribe(
         (result:any) => {
           this.tweet = "";
@@ -106,6 +112,22 @@ export class TweetsComponent implements OnInit {
         console.log(error);
       }
     )
+  }
+
+  getFunctionToCall(): void {
+    if(this.list == "feed") {
+      this.functionToCall = this.tweetService.getFeed(this.authService.connectedUser._id);
+    } 
+    else if(this.list == "tweetsPublished") {
+      this.functionToCall = this.tweetService.getTweetsByCreatorName(this.param);
+      console.log("lul");
+    }
+    else if(this.list == "tweetsLiked") {
+      console.log("lol");
+      this.functionToCall = this.tweetService.getTweetsLiked(this.param);
+     // console.log("tweetsLiked");
+    }
+    this.getTweets();
   }
 
   deleteTweet(tweet:Tweet): void {

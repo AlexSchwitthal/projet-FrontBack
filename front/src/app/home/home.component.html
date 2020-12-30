@@ -9,7 +9,7 @@
                 [fixedBottomGap]="100">
             </mat-sidenav>
             <app-tweet-post (addTweet)="addTweet($event)"></app-tweet-post>
-            <app-tweets parentComponent="home" [tweetText]="tweetText"></app-tweets>
+            <app-tweets list="feed" [param]= "" [tweetText]="tweetText"></app-tweets>
         </div>
     </div>
 </div>

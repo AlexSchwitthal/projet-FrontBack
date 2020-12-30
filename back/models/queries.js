@@ -254,5 +254,17 @@ module.exports = {
         );
         tweet.save();
         return "1";
+    },
+
+    getTweetsLiked: async function(userId) {
+        return tweets.find(
+            { "likes.userId": mongoose.Types.ObjectId(userId) },
+            null,
+            {
+                sort: {
+                    created_at: -1
+                }
+            }
+        );
     }
 };

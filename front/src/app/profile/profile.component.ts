@@ -17,6 +17,8 @@ export class ProfileComponent implements OnInit {
   isOwnProfile : boolean;
   isFollowing: boolean;
   followers: User[] = [];
+  listToCall: string = "tweetsPublished";
+  param: string;
 
   constructor(public usersService : UsersService, private route: ActivatedRoute, private router: Router, public authService: AuthService) { 
     route.params.subscribe(val => {
@@ -27,6 +29,7 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.param = this.login;
   }
 
   getUser(login:any):any {
@@ -103,5 +106,15 @@ export class ProfileComponent implements OnInit {
         console.log(error);
       }
     )
+  }
+
+  getPublishedTweets():any {
+    this.listToCall = "tweetsPublished";
+    this.param = this.login;
+  }
+
+  getLikedTweets():any {
+    this.listToCall = "tweetsLiked";
+    this.param = this.userPage._id;
   }
 }
