@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit, SimpleChange } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { User } from '../models/user';
 import { AuthService } from '../services/auth.service';
 import { UsersService } from '../services/users.service';
@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit {
   listToCall: string = "tweetsPublished";
   param: string;
 
-  constructor(public usersService : UsersService, private route: ActivatedRoute, private router: Router, public authService: AuthService) { 
+  constructor(public usersService : UsersService, private route: ActivatedRoute, public authService: AuthService) { 
     route.params.subscribe(val => {
       this.login = val.username;
       this.getUser(this.login);
@@ -32,6 +32,10 @@ export class ProfileComponent implements OnInit {
     this.param = this.login;
   }
 
+  ngOnChanges(changes: SimpleChange) {
+    console.log(changes);
+  }
+  
   getUser(login:any):any {
     this.usersService.getUser(this.login).subscribe(
       (user:any) => {

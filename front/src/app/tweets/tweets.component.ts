@@ -1,4 +1,5 @@
-import { Component, Input, OnInit, SimpleChange } from '@angular/core';
+import { Component, Input, NgZone, OnInit, SimpleChange } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Tweet } from '../models/tweet';
 import { AuthService } from '../services/auth.service';
 import { TweetService } from '../services/tweet.service';
@@ -10,16 +11,20 @@ import { TweetService } from '../services/tweet.service';
 })
 export class TweetsComponent implements OnInit {
 
-  @Input() list: String;
+  @Input() list: string;
   @Input() param: string;
   @Input() tweetText: string;
-  tweet: any;
-  tweets: any;
+  tweets: any[];
   functionToCall: any;
   interval: any;
 
-  constructor(public authService : AuthService, public tweetService: TweetService) { }
+  constructor(public authService : AuthService, public tweetService: TweetService, private router: Router) {
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
+   }
 
+  
   ngOnInit(): void {
     this.getFunctionToCall();
     this.interval = setInterval(() => {
@@ -32,7 +37,6 @@ export class TweetsComponent implements OnInit {
       clearInterval(this.interval);
     }
   }
-
 
   ngOnChanges(changes: SimpleChange) {
     if(changes['tweetText'] !== undefined) {
@@ -49,10 +53,11 @@ export class TweetsComponent implements OnInit {
 
   
   addTweet(): void {
+    console.log("mol");
     if(this.tweetText != "" && this.tweetText != undefined) {
       this.tweetService.addTweet(this.authService.connectedUser._id, this.tweetText).subscribe(
         (result:any) => {
-          this.tweet = "";
+          this.tweets.unshift(new Tweet(result._id, result.content, result.created_at, result.creator_id, result.likes));
           this.refreshTweets();
         },
         (error:any) => {
@@ -78,7 +83,6 @@ export class TweetsComponent implements OnInit {
 
   refreshTweets(): void {
     this.functionToCall.subscribe(
-    //this.functionToCall.subscribe(
       (newTweets:any) => {
         // suppression des tweets qui n'existe plus en DB
         for(var element of this.tweets) {
@@ -102,9 +106,9 @@ export class TweetsComponent implements OnInit {
           }
           // ajout des nouveaux tweets au début de la liste
           if(!this.alreadyExist(element, this.tweets)) {
-         //   if(element.creator_id != this.authService.connectedUser._id) {
+            if(element.creator_id != this.authService.connectedUser._id) {
               this.tweets.unshift(new Tweet(element._id, element.content, element.created_at, element.creator_id, element.likes));
-          //  }
+            }
           }
         }
       },
@@ -120,12 +124,9 @@ export class TweetsComponent implements OnInit {
     } 
     else if(this.list == "tweetsPublished") {
       this.functionToCall = this.tweetService.getTweetsByCreatorName(this.param);
-      console.log("lul");
     }
     else if(this.list == "tweetsLiked") {
-      console.log("lol");
       this.functionToCall = this.tweetService.getTweetsLiked(this.param);
-     // console.log("tweetsLiked");
     }
     this.getTweets();
   }
