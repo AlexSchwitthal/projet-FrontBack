@@ -11,7 +11,11 @@
 
 
             <div>
-                <h1>Liste des utilisateurs</h1>
+                <h1>
+                    <span *ngIf="list==='user'">Liste des utilisateurs</span>
+                    <span *ngIf="list==='follower'"> List des abonnés à {{this.param}}</span>
+                    <span *ngIf="list==='following'"> Liste des abonnements de {{this.param}}</span>
+                </h1>
             </div>
             <div>
                 <input class="form-control" id="search" aria-label="Search" placeholder="Rechercher..."
