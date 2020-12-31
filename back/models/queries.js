@@ -185,6 +185,17 @@ module.exports = {
         return "1";
     },
 
+    getFollowing: async function(userId) {
+        const user = await this.getUserById(userId);
+        followingArray = [];
+        for(var followingUser of user.following) {
+            followingArray.push(followingUser.followingId);
+        }
+        return users.find(
+            { _id : { $in : followingArray}}
+        )
+    },
+
     getFollowers: async function(userId) {
         return users.find({"following.followingId": mongoose.Types.ObjectId(userId)});
     },

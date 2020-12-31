@@ -1,4 +1,4 @@
-<!-- <div class="container">
+<div class="container">
     <div class="row">
         <div class="col-3">
             <app-left-sidebar></app-left-sidebar>
@@ -25,13 +25,9 @@
                 </tr>
                 </thead>
                 <tbody id="tabUtilisateurs">
-                    <tr class="userList" *ngFor="let user of users"><th><a routerLink="/profile/{{user.login}}">{{
-                            user.nickname }}</a></th></tr>
+                    <tr class="userList" *ngFor="let user of users"><th><a routerLink="/profile/{{user.login}}">{{user.nickname }}</a></th></tr>
                 </tbody>
             </table>
-
-
         </div>
     </div>
-</div> -->
-<app-list list="user"></app-list>
+</div>

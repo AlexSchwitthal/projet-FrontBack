@@ -36,6 +36,10 @@ export class UsersService {
     return this.http.post("http://localhost:3000/getFollowers", {userId: userId}, {withCredentials : true});
   }
 
+  getFollowing(userId): any {
+    return this.http.get("http://localhost:3000/getFollowing/" + userId, {withCredentials: true});
+  }
+
   addFollowing(userId:any, followingId: any): any {
     return this.http.put("http://localhost:3000/addFollowing", {userId: userId, followingId: followingId}, { withCredentials : true });
   }

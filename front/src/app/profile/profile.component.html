@@ -21,10 +21,10 @@
                     Mot de passe : {{this.userPage.password}}
                 </div>
                 <div>
-                    Suivi(e) par <span [innerHTML]="this.followers.length"></span> personne(s)
+                    Suivi(e) par <a routerLink="./follower"><span [innerHTML]="this.followers.length"></span> personne(s)</a> 
                 </div>
                 <div>
-                    Abonné(e) à {{this.userPage.following.length}} personne(s)
+                    Abonné(e) à <a routerLink="./following">{{this.userPage.following.length}} personne(s)</a>
                 </div>
                 <span *ngIf="isOwnProfile===false">
                     <button *ngIf="isFollowing===false" (click)="addFollowing()" mat-raised-button

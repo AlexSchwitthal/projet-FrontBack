@@ -29,6 +29,9 @@ import { ListUserComponent } from './list-user/list-user.component';
 import { TweetPostComponent } from './tweet-post/tweet-post.component';
 import { TweetsComponent } from './tweets/tweets.component';
 import { TweetBlockComponent } from './tweet-block/tweet-block.component';
+import { ListFollowerComponent } from './list-follower/list-follower.component';
+import { ListFollowingComponent } from './list-following/list-following.component';
+import { ListComponent } from './list/list.component';
 
 
 
@@ -45,7 +48,10 @@ import { TweetBlockComponent } from './tweet-block/tweet-block.component';
     ListUserComponent,
     TweetPostComponent,
     TweetsComponent,
-    TweetBlockComponent
+    TweetBlockComponent,
+    ListFollowerComponent,
+    ListFollowingComponent,
+    ListComponent
   ],
   imports: [
     BrowserModule,

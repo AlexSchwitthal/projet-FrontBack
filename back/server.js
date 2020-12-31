@@ -44,6 +44,10 @@ queries.getFollowers("5fe36d4cafd9ee405473bd97").then(result => {
   console.log(result);
 }) */
 
+/* queries.getFollowing("5fe36d4cafd9ee405473bd97").then(result => {
+  console.log(result);
+}) */
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json()); 
 app.use(session({
@@ -245,6 +249,11 @@ app.put('/addFollowing', async (req, res) => {
   }
 });
 
+app.get('/getFollowing/:userId', async (req, res) => {
+  var result = await queries.getFollowing(req.params.userId);
+  res.json(result)
+});
+
 app.post('/getFollowers', async (req, res) => {
   var result = await queries.getFollowers(req.body.userId);
   res.json(result);
@@ -280,9 +289,15 @@ app.put('/removeLike', async(req, res) => {
   }
 });
 
+
 app.get('/getTweetsLiked/:userId', async(req, res) => {
-  var result = await queries.getTweetsLiked(req.params.userId);
-  res.status(200).json(result);
+  try {
+    var result = await queries.getTweetsLiked(req.params.userId);
+    res.status(200).json(result);
+  }
+  catch(e) {
+    res.status(404).json(e);
+  }
 });
 
 
