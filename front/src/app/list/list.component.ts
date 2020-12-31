@@ -12,7 +12,7 @@ export class ListComponent implements OnInit {
 
   @Input() list: string;
   functionToCall: any;
-  userPage: any;
+  userPage: any = "";
   users: User[];
   interval: any;
   param: any;
@@ -59,6 +59,8 @@ export class ListComponent implements OnInit {
     this.usersService.getUser(this.param).subscribe(
       (user:any) => {
         this.userPage = new User(user._id, user.login, user.password, user.nickname, user.following);  
+        if(user == null) {
+        }
         this.getFunctionToCall();
       },
       (error:any) => {
