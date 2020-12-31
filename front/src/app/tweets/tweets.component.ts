@@ -1,5 +1,5 @@
-import { Component, Input, NgZone, OnInit, SimpleChange } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, Input, OnInit, SimpleChange } from '@angular/core';
+import { Router } from '@angular/router';
 import { Tweet } from '../models/tweet';
 import { AuthService } from '../services/auth.service';
 import { TweetService } from '../services/tweet.service';
@@ -24,7 +24,6 @@ export class TweetsComponent implements OnInit {
     };
    }
 
-  
   ngOnInit(): void {
     this.getFunctionToCall();
     this.interval = setInterval(() => {
@@ -53,7 +52,6 @@ export class TweetsComponent implements OnInit {
 
   
   addTweet(): void {
-    console.log("mol");
     if(this.tweetText != "" && this.tweetText != undefined) {
       this.tweetService.addTweet(this.authService.connectedUser._id, this.tweetText).subscribe(
         (result:any) => {

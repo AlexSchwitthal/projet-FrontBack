@@ -23,7 +23,6 @@ export class TweetBlockComponent implements OnInit {
   constructor(public tweetService: TweetService, public userService: UsersService, public authService: AuthService) { }
 
   ngOnInit(): void {
-    //this.likesLength = this.tweet.likes.length;
     this.getTweetCreator();
     if(this.tweet.creator_id == this.authService.connectedUser._id) {
       this.isTweetCreator = true;

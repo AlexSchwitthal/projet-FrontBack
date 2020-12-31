@@ -1,4 +1,4 @@
-import { Component, OnInit, SimpleChange } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '../models/user';
 import { AuthService } from '../services/auth.service';
@@ -21,7 +21,7 @@ export class ProfileComponent implements OnInit {
   param: string;
 
   constructor(public usersService : UsersService, private route: ActivatedRoute, public authService: AuthService) { 
-    route.params.subscribe(val => {
+    this.route.params.subscribe(val => {
       this.login = val.username;
       this.getUser(this.login);
       this.checkOwnProfile(this.login);   
@@ -30,10 +30,6 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.param = this.login;
-  }
-
-  ngOnChanges(changes: SimpleChange) {
-    console.log(changes);
   }
   
   getUser(login:any):any {
