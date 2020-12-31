@@ -8,9 +8,70 @@
             <mat-sidenav #rightSidenav mode="side" opened="true" class="centerNav" [fixedTopGap]="100"
                 [fixedBottomGap]="100"></mat-sidenav>
 
-            <mat-sidenav #rightSidenav mode="side" opened="true" class="centerNav" [fixedTopGap]="100"
-                [fixedBottomGap]="100">
-            </mat-sidenav>
+            <div class="header pb-6 d-flex align-items-center"
+                style="min-height: 150px;">
+                <!-- Mask -->
+                <span class="mask bg-gradient-default opacity-8"></span>
+                <!-- Header container -->
+                <div class="container-fluid d-flex align-items-center">
+                    <div class="row">
+                        <div class="col-lg-7 col-md-10">
+                            <h1 class="display-2 text-white"> {{this.userPage.login}}</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid mt--6">
+                <div class="row">
+                  <div class="col-xl-12 order-xl-2">
+                    <div class="card card-profile">
+                      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9z-72ZEley32eX2RHG0Q6i-b8nxuCi-A_iw&usqp=CAU"  style="max-height: 150px;" alt="Image placeholder" class="card-img-top">
+                      <div class="row justify-content-center">
+                        <div class="col-lg-3 order-lg-2">
+                          <div class="card-profile-image">
+                            <a href="#">
+                              <img src="../../favicon.ico" class="rounded-circle">
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+                        <div class="d-flex justify-content-between">
+                          <a href="#" class="btn btn-sm btn-info  mr-4 ">Connect</a>
+                          <a href="#" class="btn btn-sm btn-default float-right">Message</a>
+                        </div>
+                      </div>
+                      <div class="card-body pt-0">
+                        <div class="row">
+                          <div class="col">
+                            <div class="card-profile-stats d-flex justify-content-center">
+                              <div>
+                                <a routerLink="./follower"><span class="heading" [innerHTML]="this.followers.length"></span></a>
+                                <a routerLink="./follower"><span class="description">Abonnés</span></a> 
+                              </div>
+                              <div>
+                                <a routerLink="./following"><span class="heading">{{this.userPage.following.length}}</span></a>
+                                <a routerLink="./following"><span class="description">Abonnements</span></a>                             
+                              </div>
+                              <div>
+                                <span class="heading">NBDETWEETALEXANDRE</span>
+                                <span class="description">Kwits</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    
+                    
+                    </div>
+
+                    <div class="card card-profile">  <app-tweets [list]="this.listToCall" [param]="this.param"></app-tweets></div>
+                  </div>
+                  
+                  </div>
+            </div>
+
+
             <div>bloc de merde pas responsive vu que j'suis nul en design :( </div>
             <br />
             <span *ngIf="isValidUser===true">
@@ -21,7 +82,8 @@
                     Mot de passe : {{this.userPage.password}}
                 </div>
                 <div>
-                    Suivi(e) par <a routerLink="./follower"><span [innerHTML]="this.followers.length"></span> personne(s)</a> 
+                    Suivi(e) par <a routerLink="./follower"><span [innerHTML]="this.followers.length"></span>
+                        personne(s)</a>
                 </div>
                 <div>
                     Abonné(e) à <a routerLink="./following">{{this.userPage.following.length}} personne(s)</a>
@@ -34,7 +96,7 @@
                 </span>
                 <span>
                     <button mat-raised-button color="primary" (click)="getPublishedTweets()">Tweet(s) publié(s)</button>
-                    <button mat-raised-button color="warn"(click)="getLikedTweets()">Tweet(s) liké(s)</button>
+                    <button mat-raised-button color="warn" (click)="getLikedTweets()">Tweet(s) liké(s)</button>
                 </span>
             </span>
             <app-tweets [list]="this.listToCall" [param]="this.param"></app-tweets>
