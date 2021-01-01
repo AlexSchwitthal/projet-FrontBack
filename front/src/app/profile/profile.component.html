@@ -36,13 +36,14 @@
                             <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                                 <div class="d-flex justify-content-between">
                                     <span *ngIf="isOwnProfile===false">
-                                        <a *ngIf="isFollowing===false" (click)="addFollowing()"
-                                            class="btn btn-sm btn-info  mr-4 ">S'abonner</a>
-                                        <a *ngIf="isFollowing===true" (click)="removeFollowing()"
+                                        <button *ngIf="isFollowing===false" (click)="addFollowing()"
+                                            class="btn btn-sm btn-info  mr-4 ">S'abonner</button>
+                                        <button *ngIf="isFollowing===true" (click)="removeFollowing()"
                                             class="btn btn-sm btn-default float-right">Se
-                                            désabonner</a>
+                                            désabonner</button>
                                     </span>
-                                    <div class="row">
+                                    <a></a>
+                                    <div class="row" style="right: 0;">
                                         <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                             <label class="btn btn-secondary active">
                                                 <input type="radio" name="options" id="option1" autocomplete="off" (click)="getPublishedTweets()"
@@ -73,7 +74,7 @@
                                             </div>
                                             <div>
                                                 <span class="heading">{{this.nbTweetsPublished}}</span>
-                                                <span class="description">Kwits</span>
+                                                <span class="description">Kweets</span>
                                             </div>
                                         </div>
                                     </div>
