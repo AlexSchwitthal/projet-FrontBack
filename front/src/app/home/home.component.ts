@@ -16,6 +16,5 @@ export class HomeComponent implements OnInit {
 
   addTweet(tweetText:any) {
     this.tweetText = tweetText;
-    //console.log("mdr");
   }
 }

@@ -11,9 +11,9 @@ import { UsersService } from '../services/users.service';
 })
 export class ProfileComponent implements OnInit {
 
-  login: any;
-  userPage: User = null;
-  isValidUser : boolean;
+  login: any;                               // nom de l'utilisateur passé dans l'url
+  userPage: User = null;                    // User récupérer de le login
+  isValidUser : boolean;                    // 
   isOwnProfile : boolean;
   isFollowing: boolean;
   followers: User[] = [];

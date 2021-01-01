@@ -10,12 +10,12 @@ import { UsersService } from '../services/users.service';
 })
 export class ListComponent implements OnInit {
 
-  @Input() list: string;
-  functionToCall: any;
-  userPage: any = "";
-  users: User[];
-  interval: any;
-  param: any;
+  @Input() list: string;  // liste passé en paramètre lors de l'appel du component
+  functionToCall: any;    // fonction à appeller selon la liste fournis
+  userPage: any = "";     // Si nous sommes sur le profil d'un utilisateur, il s'agit de cette utilisateur
+  users: User[];          // liste des utilisateurs de la liste
+  interval: any;          // interval
+  param: any;             // variable passé dans l'url 
 
   constructor(public usersService: UsersService, private route: ActivatedRoute) { 
     route.params.subscribe(val => {
