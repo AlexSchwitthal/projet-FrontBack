@@ -35,8 +35,28 @@
                             </div>
                             <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                                 <div class="d-flex justify-content-between">
-                                    <a href="#" class="btn btn-sm btn-info  mr-4 ">Connect</a>
-                                    <a href="#" class="btn btn-sm btn-default float-right">Message</a>
+                                    <span *ngIf="isOwnProfile===false">
+                                        <a *ngIf="isFollowing===false" (click)="addFollowing()"
+                                            class="btn btn-sm btn-info  mr-4 ">S'abonner</a>
+                                        <a *ngIf="isFollowing===true" (click)="removeFollowing()"
+                                            class="btn btn-sm btn-default float-right">Se
+                                            désabonner</a>
+                                    </span>
+                                    <div class="row">
+                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                            <label class="btn btn-secondary active">
+                                                <input type="radio" name="options" id="option1" autocomplete="off" (click)="getPublishedTweets()"
+                                                    checked > <a (click)="getPublishedTweets()">Kweet(s) publié(s)</a>
+                                            </label>
+                                            <label class="btn btn-secondary">
+                                                <input type="radio" name="options" id="option2" autocomplete="off" (click)="getLikedTweets()">
+                                                   <a (click)="getLikedTweets()"> Kweet(s) liké(s) </a>
+                                            </label>
+
+                                        </div>
+
+                                    </div>
+
                                 </div>
                             </div>
                             <div class="card-body pt-0">
@@ -62,8 +82,9 @@
                                     </div>
                                 </div>
 
+
                                 <!-- FAIT UN VRAI DESIGN POUR MES BOUTONS MOCHES SOSO STP -->
-                                <span *ngIf="isOwnProfile===false">
+                                <!-- <span *ngIf="isOwnProfile===false">
                                     <button *ngIf="isFollowing===false" (click)="addFollowing()" mat-raised-button
                                         color="primary">S'abonner</button>
                                     <button *ngIf="isFollowing===true" (click)="removeFollowing()" mat-raised-button
@@ -75,7 +96,7 @@
                                         publié(s)</button>
                                     <button mat-raised-button color="warn" (click)="getLikedTweets()">Kweet(s)
                                         liké(s)</button>
-                                </span>
+                                </span> -->
                             </div>
                         </div>
                         <div class="card card-profile">
