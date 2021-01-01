@@ -43,16 +43,14 @@
                                     </span>
                                     <a></a>
                                     <div class="row" style="right: 0;">
-                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                            <label class="btn btn-secondary active">
-                                                <span (click)="getPublishedTweets">
-                                                    <input type="radio" name="options" id="option1" autocomplete="off" (click)="getPublishedTweets()"
-                                                        checked > <a (click)="getPublishedTweets()">Kweet(s) publié(s)</a>
-                                                </span>
+                                        <div class="btn-group btn-group-toggle" data-toggle="buttons" >
+                                            <label class="btn btn-secondary active" (click)="getPublishedTweets()">
+                                                <input type="radio" name="options" id="option1" autocomplete="off" (click)="getPublishedTweets()"checked >
+                                                    Kweet(s) publié(s)
                                             </label>
-                                            <label class="btn btn-secondary">
+                                            <label class="btn btn-secondary" (click)="getLikedTweets()">
                                                 <input type="radio" name="options" id="option2" autocomplete="off" (click)="getLikedTweets()">
-                                                   <a (click)="getLikedTweets()"> Kweet(s) liké(s) </a>
+                                                   Kweet(s) liké(s)
                                             </label>
                                         </div>
                                     </div>
