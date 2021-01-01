@@ -43,12 +43,18 @@
                                             désabonner</a>
                                     </span>
                                     <div class="row">
-                                        <a (click)="getPublishedTweets()"
-                                            class="btn btn-sm btn-default float-right">Kweet(s)
-                                            publié(s)</a>
-                                        <a (click)="getLikedTweets()"
-                                            class="btn btn-sm btn-default float-right">Kweet(s)
-                                            liké(s)</a>
+                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                            <label class="btn btn-secondary active">
+                                                <input type="radio" name="options" id="option1" autocomplete="off" (click)="getPublishedTweets()"
+                                                    checked > <a (click)="getPublishedTweets()">Kweet(s) publié(s)</a>
+                                            </label>
+                                            <label class="btn btn-secondary">
+                                                <input type="radio" name="options" id="option2" autocomplete="off" (click)="getLikedTweets()">
+                                                   <a (click)="getLikedTweets()"> Kweet(s) liké(s) </a>
+                                            </label>
+
+                                        </div>
+
                                     </div>
 
                                 </div>
@@ -75,6 +81,7 @@
                                         </div>
                                     </div>
                                 </div>
+
 
                                 <!-- FAIT UN VRAI DESIGN POUR MES BOUTONS MOCHES SOSO STP -->
                                 <!-- <span *ngIf="isOwnProfile===false">
