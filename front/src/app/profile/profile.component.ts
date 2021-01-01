@@ -110,6 +110,7 @@ export class ProfileComponent implements OnInit {
   }
 
   getPublishedTweets():any {
+    console.log("getPublishedTweets");
     if(this.listToCall != "tweetsPublished") {
       this.listToCall = "tweetsPublished";
       this.param = this.login;
@@ -117,6 +118,7 @@ export class ProfileComponent implements OnInit {
   }
 
   getLikedTweets():any {
+    console.log("getLikedTweets");
     if(this.listToCall != "tweetsLiked") {
       this.listToCall = "tweetsLiked";
       this.param = this.userPage._id;

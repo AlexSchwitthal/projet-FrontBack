@@ -26,12 +26,8 @@ export class ListComponent implements OnInit {
   }
   
   ngOnInit(): void {  
-    if(this.list == "user") {
     this.getFunctionToCall();
-    }
-    else {
-      this.getUsers();
-    }
+    this.getUsers();
   }
 
   getUsers(){
