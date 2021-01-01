@@ -14,7 +14,6 @@ export class ListComponent implements OnInit {
   functionToCall: any;    // fonction à appeller selon la liste fournis
   userPage: any = "";     // Si nous sommes sur le profil d'un utilisateur, il s'agit de cette utilisateur
   users: User[];          // liste des utilisateurs de la liste
-  interval: any;          // interval
   param: any;             // variable passé dans l'url 
 
   constructor(public usersService: UsersService, private route: ActivatedRoute) { 
@@ -30,14 +29,8 @@ export class ListComponent implements OnInit {
     if(this.list == "user") {
     this.getFunctionToCall();
     }
-    this.interval = setInterval(() => {
-        this.getUsers();
-    }, 10000);
-  }
-
-  ngOnDestroy() {
-    if (this.interval) {
-      clearInterval(this.interval);
+    else {
+      this.getUsers();
     }
   }
 

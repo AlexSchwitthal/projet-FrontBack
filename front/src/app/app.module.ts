@@ -11,16 +11,12 @@ import { AuthGuardService } from './services/auth-guard.service';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatListModule} from '@angular/material/list';
 import { LeftSidebarComponent } from './left-sidebar/left-sidebar.component';
 import { HeaderComponent } from './header/header.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -32,8 +28,6 @@ import { TweetBlockComponent } from './tweet-block/tweet-block.component';
 import { ListFollowerComponent } from './list-follower/list-follower.component';
 import { ListFollowingComponent } from './list-following/list-following.component';
 import { ListComponent } from './list/list.component';
-
-
 
 @NgModule({
   declarations: [
@@ -59,16 +53,12 @@ import { ListComponent } from './list/list.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
     MatButtonModule,
     MatCardModule,
     MatInputModule,
     MatFormFieldModule,
     MatIconModule,
-    MatSnackBarModule,
-    MatSidenavModule,
-    MatListModule
+    MatSnackBarModule
   ],
   providers: [AuthGuardService],
   bootstrap: [AppComponent]
