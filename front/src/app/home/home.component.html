@@ -5,6 +5,7 @@
         </div>
         <div class="main-content col-9">
             <app-header></app-header>
+            <br/>
             <app-tweet-post (addTweet)="addTweet($event)"></app-tweet-post>
             <app-tweets list="feed" [param]= "" [tweetText]="tweetText"></app-tweets>
         </div>
