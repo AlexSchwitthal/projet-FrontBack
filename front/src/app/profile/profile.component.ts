@@ -110,13 +110,17 @@ export class ProfileComponent implements OnInit {
   }
 
   getPublishedTweets():any {
-    this.listToCall = "tweetsPublished";
-    this.param = this.login;
+    if(this.listToCall != "tweetsPublished") {
+      this.listToCall = "tweetsPublished";
+      this.param = this.login;
+    }
   }
 
   getLikedTweets():any {
-    this.listToCall = "tweetsLiked";
-    this.param = this.userPage._id;
+    if(this.listToCall != "tweetsLiked") {
+      this.listToCall = "tweetsLiked";
+      this.param = this.userPage._id;
+    }
   }
 
   tweetsLength(tweetLength:number):any {
