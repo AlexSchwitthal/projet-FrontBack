@@ -12,5 +12,5 @@
     </mat-card-actions>
 </mat-card> -->
 <div class="tweets">
-    <app-tweet-block *ngFor="let tweet of tweets" [tweet]="tweet" [likesLength]="tweet.likes.length" (deleteTweet)="deleteTweet($event)" (editTweet)="tweetService.editTweet($event)"></app-tweet-block>
+    <app-tweet-block *ngFor="let tweet of tweets" [tweet]="tweet" [likesLength]="tweet.likes.length" (deleteTweet)="deleteTweet($event)"></app-tweet-block>
 </div>

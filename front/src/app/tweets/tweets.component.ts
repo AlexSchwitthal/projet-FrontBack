@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, SimpleChange } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChange } from '@angular/core';
 import { Router } from '@angular/router';
 import { Tweet } from '../models/tweet';
 import { AuthService } from '../services/auth.service';
@@ -14,7 +14,8 @@ export class TweetsComponent implements OnInit {
   @Input() list: string;
   @Input() param: string;
   @Input() tweetText: string;
-  tweets: any[];
+  @Output() tweetsLength = new EventEmitter<number>();
+  tweets: any[] = [];
   functionToCall: any;
   interval: any;
 
@@ -72,6 +73,7 @@ export class TweetsComponent implements OnInit {
         for(var element of tweetsList) {
           this.tweets.push(new Tweet(element._id, element.content, element.created_at, element.creator_id, element.likes));
         }
+        this.tweetsLengthEvent();
       },
       (error:any) => {
         console.log(error);
@@ -134,11 +136,16 @@ export class TweetsComponent implements OnInit {
       () => {
         let index = this.tweets.indexOf(tweet);
         this.tweets.splice(index, 1);
+        this.tweetsLengthEvent();
       },
       (error) => {
         console.log(error);
       }
     );
+  }
+
+  tweetsLengthEvent(): void  {
+    this.tweetsLength.emit(this.tweets.length);
   }
 
   alreadyExist(newTweet: Tweet, oldTweetsList: Tweet[]): boolean {

@@ -19,6 +19,7 @@ export class ProfileComponent implements OnInit {
   followers: User[] = [];
   listToCall: string = "tweetsPublished";
   param: string;
+  nbTweetsPublished: number = 0;
 
   constructor(public usersService : UsersService, private route: ActivatedRoute, public authService: AuthService) { 
     this.route.params.subscribe(val => {
@@ -63,7 +64,7 @@ export class ProfileComponent implements OnInit {
   }
 
   checkOwnProfile(login:any):any{
-    if (this.login === this.authService.connectedUser.login){
+    if (this.login === this.authService.connectedUser.login) {
       this.isOwnProfile = true;
     }
     else this.isOwnProfile = false;
@@ -116,5 +117,9 @@ export class ProfileComponent implements OnInit {
   getLikedTweets():any {
     this.listToCall = "tweetsLiked";
     this.param = this.userPage._id;
+  }
+
+  tweetsLength(tweetLength:number):any {
+    this.nbTweetsPublished = tweetLength;
   }
 }

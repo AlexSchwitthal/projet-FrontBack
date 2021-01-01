@@ -25,6 +25,7 @@
             <!-- Page content -->
             <div class="container-fluid mt--6">
                 <div class="row">
+                    <div class="col-xl-12 order-xl-2">
                         <div class="card">
                             <div class="card-header">
                                 <div class="row align-items-center">
@@ -45,35 +46,41 @@
                                                     </span>
                                                     <mat-form-field>
                                                         <mat-label>Saisir pseudo</mat-label>
-                                                        <input matInput type="text" [(ngModel)]="nickname" (input)="regexValidator($event)" maxlength="15">
+                                                        <input matInput type="text" [(ngModel)]="nickname"
+                                                            name="nickname" (input)="regexValidator($event)"
+                                                            maxlength="15">
                                                     </mat-form-field>
-                                                    <button (click)="changeNickname()" mat-raised-button color="primary" class="validation">
+                                                    <button (click)="changeNickname()" mat-raised-button color="primary"
+                                                        class="validation">
                                                         Changer pseudonyme
                                                     </button>
                                                 </div>
-                                             
+
                                             </div>
                                         </div>
                                     </div>
                                     <hr class="my-4" />
-                                    <!-- Address -->
                                     <h6 class="heading-small text-muted mb-4">Confidentialité</h6>
                                     <div class="pl-lg-4">
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <span class="label">
-                                                        Saisir un nouveau mot de passe :
+                                                        Changer de mot de passe :
                                                     </span>
                                                     <mat-form-field>
                                                         <mat-label>Saisir mot de passe</mat-label>
-                                                        <input flex matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="password" maxlength="15">
-                                                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                                                        <input flex matInput [type]="hide ? 'password' : 'text'"
+                                                            [(ngModel)]="password" name="password" maxlength="15">
+                                                        <button mat-icon-button matSuffix (click)="hide = !hide"
+                                                            [attr.aria-label]="'Hide password'"
                                                             [attr.aria-pressed]="hide">
-                                                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}
+                                                            </mat-icon>
                                                         </button>
                                                     </mat-form-field>
-                                                    <a (click)="changePassword()" class="validation btn btn-sm btn-info  mr-4 ">
+                                                    <a (click)="changePassword()"
+                                                        class="validation btn btn-sm btn-info  mr-4 ">
                                                         Changer mot de passe
                                                     </a>
                                                 </div>
@@ -95,42 +102,9 @@
                                 </form>
                             </div>
                         </div>
+                    </div>
                 </div>
-
-
-            <!-- <div>
-                <span class="label">
-                    Changer de pseudonyme :
-                </span>
-                <mat-form-field>
-                    <mat-label>Saisir pseudo</mat-label>
-                    <input matInput type="text" [(ngModel)]="nickname" (input)="regexValidator($event)" maxlength="15">
-                </mat-form-field>
-                <button (click)="changeNickname()" mat-raised-button color="primary" class="validation">
-                    Changer pseudonyme
-                </button>
             </div>
-            <div>
-                <span class="label">
-                    Saisir un nouveau mot de passe :
-                </span>
-                <mat-form-field>
-                    <mat-label>Saisir mot de passe</mat-label>
-                    <input flex matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="password" maxlength="15">
-                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                        [attr.aria-pressed]="hide">
-                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                    </button>
-                </mat-form-field>
-                <button (click)="changePassword()" mat-raised-button color="primary" class="validation">
-                    Changer mot de passe
-                </button>
-            </div>
-            <div>
-                <button (click)="deleteUser()" mat-raised-button color="warn">
-                    Supprimer mon compte
-                </button>
-            </div>
-        </div> -->
+        </div>
     </div>
 </div>
