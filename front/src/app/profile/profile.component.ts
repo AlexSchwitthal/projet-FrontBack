@@ -13,13 +13,13 @@ export class ProfileComponent implements OnInit {
 
   login: any;                               // nom de l'utilisateur passé dans l'url
   userPage: User = null;                    // User récupérer de le login
-  isValidUser : boolean;                    // 
-  isOwnProfile : boolean;
-  isFollowing: boolean;
-  followers: User[] = [];
-  listToCall: string = "tweetsPublished";
-  param: string;
-  nbTweetsPublished: number = 0;
+  isValidUser : boolean;                    // vérifie que l'user existe
+  isOwnProfile : boolean;                   // vérifie si l'on est sur son propre profil ou non
+  isFollowing: boolean;                     // vérifie si l'utilisateur connecté suit ou non le profil
+  followers: User[] = [];                   // liste des followers du profil
+  listToCall: string = "tweetsPublished";   // liste à appeller (tweets publiés ou tweets likés)
+  param: string;                            // paramètre
+  nbTweetsPublished: number = 0;            // nombre de tweets publiés
 
   constructor(public usersService : UsersService, private route: ActivatedRoute, public authService: AuthService) { 
     this.route.params.subscribe(val => {
