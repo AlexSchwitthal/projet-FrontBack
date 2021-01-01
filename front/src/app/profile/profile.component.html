@@ -1,9 +1,9 @@
 <div class="container col-12">
     <div class="row">
-        <div class="col-3">
+        <div class="col-2">
             <app-left-sidebar></app-left-sidebar>
         </div>
-        <div class="main-content col-9">
+        <div class="main-content col-10">
             <app-header></app-header>
             <mat-sidenav #rightSidenav mode="side" opened="true" class="centerNav" [fixedTopGap]="100"
                 [fixedBottomGap]="100"></mat-sidenav>
@@ -92,13 +92,11 @@
                                 </span> -->
                             </div>
                         </div>
-
                         <div class="card card-profile">
                             <app-tweets [list]="this.listToCall" [param]="this.param"
                                 (tweetsLength)="this.tweetsLength($event)"></app-tweets>
                         </div>
                     </div>
-
                 </div>
             </div>
 
@@ -137,7 +135,6 @@
                     la page que vous avez demandé n'existe pas !
                 </div>
             </span> -->
-
         </div>
     </div>
 </div>
