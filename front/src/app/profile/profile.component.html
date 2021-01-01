@@ -6,6 +6,7 @@
         <div class="main-content col-9">
             <app-header></app-header>
             <br>
+
             <div class="header pb-6 d-flex align-items-center" style="min-height: 150px;">
                 <span class="mask bg-gradient-default opacity-8"></span>
                 <div class="container-fluid d-flex align-items-center">
@@ -34,13 +35,14 @@
                             <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                                 <div class="d-flex justify-content-between">
                                     <span *ngIf="isOwnProfile===false">
-                                        <a *ngIf="isFollowing===false" (click)="addFollowing()"
-                                            class="btn btn-sm btn-info  mr-4 ">S'abonner</a>
-                                        <a *ngIf="isFollowing===true" (click)="removeFollowing()"
+                                        <button *ngIf="isFollowing===false" (click)="addFollowing()"
+                                            class="btn btn-sm btn-info  mr-4 ">S'abonner</button>
+                                        <button *ngIf="isFollowing===true" (click)="removeFollowing()"
                                             class="btn btn-sm btn-default float-right">Se
-                                            désabonner</a>
+                                            désabonner</button>
                                     </span>
-                                    <div class="row">
+                                    <a></a>
+                                    <div class="row" style="right: 0;">
                                         <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                             <label class="btn btn-secondary active">
                                                 <input type="radio" name="options" id="option1" autocomplete="off" (click)="getPublishedTweets()"
@@ -71,27 +73,11 @@
                                             </div>
                                             <div>
                                                 <span class="heading">{{this.nbTweetsPublished}}</span>
-                                                <span class="description">Kwits</span>
+                                                <span class="description">Kweets</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
-
-                                <!-- FAIT UN VRAI DESIGN POUR MES BOUTONS MOCHES SOSO STP -->
-                                <!-- <span *ngIf="isOwnProfile===false">
-                                    <button *ngIf="isFollowing===false" (click)="addFollowing()" mat-raised-button
-                                        color="primary">S'abonner</button>
-                                    <button *ngIf="isFollowing===true" (click)="removeFollowing()" mat-raised-button
-                                        color="warn">Se
-                                        désabonner</button>
-                                </span>
-                                <span>
-                                    <button mat-raised-button color="primary" (click)="getPublishedTweets()">Kweet(s)
-                                        publié(s)</button>
-                                    <button mat-raised-button color="warn" (click)="getLikedTweets()">Kweet(s)
-                                        liké(s)</button>
-                                </span> -->
                             </div>
                         </div>
                         <div class="card card-profile">
@@ -101,42 +87,6 @@
                     </div>
                 </div>
             </div>
-
-
-            <!--             <div>bloc de merde pas responsive vu que j'suis nul en design :( </div>
-            <br />
-            <span *ngIf="isValidUser===true">
-                <div>
-                    Nom d'utilisateur : {{this.userPage.login}}
-                </div>
-                <div>
-                    Mot de passe : {{this.userPage.password}}
-                </div>
-                <div>
-                    Suivi(e) par <a routerLink="./follower"><span [innerHTML]="this.followers.length"></span>
-                        personne(s)</a>
-                </div>
-                <div>
-                    Abonné(e) à <a routerLink="./following">{{this.userPage.following.length}} personne(s)</a>
-                </div>
-                <span *ngIf="isOwnProfile===false">
-                    <button *ngIf="isFollowing===false" (click)="addFollowing()" mat-raised-button
-                        color="primary">S'abonner</button>
-                    <button *ngIf="isFollowing===true" (click)="removeFollowing()" mat-raised-button color="warn">Se
-                        désabonner</button>
-                </span>
-                <span>
-                    <button mat-raised-button color="primary" (click)="getPublishedTweets()">Tweet(s) publié(s)</button>
-                    <button mat-raised-button color="warn" (click)="getLikedTweets()">Tweet(s) liké(s)</button>
-                </span>
-            </span>
-            <app-tweets [list]="this.listToCall" [param]="this.param"></app-tweets>
-
-            <span *ngIf="isValidUser===false">
-                <div>
-                    la page que vous avez demandé n'existe pas !
-                </div>
-            </span> -->
         </div>
     </div>
 </div>
