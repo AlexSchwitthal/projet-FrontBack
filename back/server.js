@@ -8,7 +8,6 @@ const port = 3000;
 // DB
 require('./models/db.js').connectToDB();
 const queries = require('./models/queries.js');
-const { getTweetsLiked } = require('./models/queries.js');
 
 
 app.use(bodyParser.urlencoded({ extended: true }));

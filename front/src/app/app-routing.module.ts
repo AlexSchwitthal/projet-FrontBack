@@ -25,10 +25,6 @@ const routes: Routes = [
   {path:'tweets', canActivate: [AuthGuardService], component:TweetsComponent},
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: '**', redirectTo: 'login' }
-/*   {path:'', component:LoginComponent},
-  {path:'login', component:LoginComponent},
-  {path:'register', component:RegisterComponent},
-  {path:'home', component:HomeComponent} */
 ];
 
 @NgModule({

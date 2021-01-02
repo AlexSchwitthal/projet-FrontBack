@@ -13,7 +13,7 @@ module.exports = {
 		return mongoose.model('users', usersSchema, 'users');
 	},
 
-	// mapping des tableaux
+	// mapping des tweets
 	tweets: function() {
 		const tweetsSchema = new mongoose.Schema({
 		 	_id: Object,
