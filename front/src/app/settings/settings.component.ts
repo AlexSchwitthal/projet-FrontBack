@@ -49,10 +49,7 @@ export class SettingsComponent implements OnInit {
     }
   }
 
-  showDeleteUserPopUp(): any {
-    /* TO DO */
-  }
-
+  
   deleteUser(): any {
     this.usersService.deleteUser(this.authService.connectedUser._id).subscribe(
       (result:any) => {

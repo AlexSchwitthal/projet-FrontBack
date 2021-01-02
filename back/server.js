@@ -10,43 +10,6 @@ require('./models/db.js').connectToDB();
 const queries = require('./models/queries.js');
 const { getTweetsLiked } = require('./models/queries.js');
 
-/* queries.getAllUsers().then(users => {
-  console.log(users);
-}) */
-/* 
-queries.addFollowing("5fe36d4cafd9ee405473bd97", "5fe63c6e5875020a640b512a").then(result => {
-  console.log(result);
-})
- */
-/* 
-queries.removeFollowing("5fe67447072db077a43035d0", "5fe36d4cafd9ee405473bd97").then(result => {
-  console.log(result);
-}) */
-/* 
-queries.getFollowers("5fe36d4cafd9ee405473bd97").then(result => {
-  console.log(result);
-}) */
-
-/* queries.getFeed("5fe36d4cafd9ee405473bd97").then(result => {
-  console.log(result);
-}) */
-
-/* queries.addLike("5febe395b6eb6d60fc6d7cc5", "5fe36d4cafd9ee405473bd97").then(result => {
-  console.log(result);
-})
- */
-
-/*  queries.removeLike("5febe395b6eb6d60fc6d7cc5", "5fe36d4cafd9ee405473bd97").then(result => {
-  console.log(result);
-}) */
-
-/* queries.getTweetsLiked("5fe67447072db077a43035d0").then(result => {
-  console.log(result);
-}) */
-
-/* queries.getFollowing("5fe36d4cafd9ee405473bd97").then(result => {
-  console.log(result);
-}) */
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json()); 
